@@ -155,12 +155,18 @@ form.login button {
   color: #7942ee;
   border-radius: 100vw;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease;
 }
-form.login button:hover {
+form.login button:not(:disabled):hover {
   background: #7942ee;
   border-color: #7942ee;
   color: #fff;
+}
+form.login button:disabled {
+  background: #fff;
+  border-color: #eee;
+  color: #aaa;
+  cursor: default;
 }
 
 /*# sourceMappingURL=styles.css.map */

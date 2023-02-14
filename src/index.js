@@ -150,7 +150,7 @@ class App extends React.Component {
                             Remember Me
                         </label>
                     </span>
-                    <button type="submit">Log In</button>
+                    <button type="submit" disabled={(this.state.unameInputValue !== "" && this.state.passInputValue !== "") ? false : true}>Log In</button>
                 </form>
             )
         }

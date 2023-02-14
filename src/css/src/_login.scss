@@ -26,7 +26,7 @@ form.login {
 		span {
 			position: absolute;
 			top: 0%;
-			padding-inline: $spacing / 2;
+			padding-inline: calc($spacing / 2);
 			left: $spacing;
 			transform: translateY(-50%);
 			color: $darkGray;
@@ -87,7 +87,7 @@ form.login {
 			overflow: hidden;
 			vertical-align: middle;
 			transition: border-color 150ms $easing-basic;
-			margin-right: $spacing / 2;
+			margin-right: calc($spacing / 2);
 			cursor: pointer;
 
 			& + label {
@@ -131,12 +131,19 @@ form.login {
 		color: $theme;
 		border-radius: $br-round;
 		cursor: pointer;
-		transition: background 150ms $easing-basic, border-color 150ms $easing-basic, color 150ms $easing-basic;
+		transition: background 150ms $easing-basic, border-color 150ms $easing-basic, color 150ms $easing-basic, opacity 150ms $easing-basic;
 
-		&:hover {
+		&:not(:disabled):hover {
 			background: $theme;
 			border-color: $theme;
 			color: $white;
+		}
+
+		&:disabled {
+			background: $white;
+			border-color: $lightGray;
+			color: $darkGray;
+			cursor: default;
 		}
 	}
 }
