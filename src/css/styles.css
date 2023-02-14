@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+*,
+*::before,
+*::after {
+  /* Box model */
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Fonts & text styles */
+  font-family: "Montserrat", system-ui, Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+form.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  width: min(500px, 100% - 2rem);
+  border-radius: 0.5rem;
+  box-shadow: 0px 7px 20px rgba(34, 34, 34, 0.15);
+}
+form.login > *:not(div) {
+  margin-block: 1rem;
+}
+form.login > div {
+  margin-bottom: 1rem;
+}
+form.login label {
+  position: relative;
+}
+form.login label span {
+  position: absolute;
+  top: 0%;
+  padding-inline: 0.5rem;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: #aaa;
+  background: white;
+  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+  font-weight: 500;
+}
+form.login label input[type=text],
+form.login label input[type=password] {
+  border: 2px solid #eee;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  width: 100%;
+  border-radius: 0.25rem;
+  outline: none;
+  transition: border-color 150ms ease;
+}
+form.login label input[type=text]:-webkit-autofill,
+form.login label input[type=password]:-webkit-autofill {
+  -webkit-box-shadow: 0px 0px 0px 30px white inset !important;
+  border-color: rgba(121, 66, 238, 0.15);
+}
+form.login label input[type=text]:focus,
+form.login label input[type=password]:focus {
+  border-color: #7942ee;
+}
+form.login label input[type=text]:focus + span,
+form.login label input[type=password]:focus + span {
+  top: 0;
+  left: 1rem;
+  transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1), left 0.3s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+  color: #7942ee;
+}
+form.login label input[type=text][value=""]:not(:focus) + span,
+form.login label input[type=password][value=""]:not(:focus) + span {
+  top: 50%;
+  left: 1.5rem;
+  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+}
+form.login label input[type=text].incorrect,
+form.login label input[type=password].incorrect {
+  border-color: #f64343;
+}
+form.login label input[type=text].incorrect + span, form.login label input[type=text].incorrect:focus + span,
+form.login label input[type=password].incorrect + span,
+form.login label input[type=password].incorrect:focus + span {
+  color: #f64343;
+}
+form.login label.checkbox {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #eee;
+  position: relative;
+  border-radius: 100vw;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: border-color 150ms ease;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+form.login label.checkbox + label {
+  cursor: pointer;
+}
+form.login label.checkbox:has(input[type=checkbox]:checked) {
+  border-color: #7942ee;
+}
+form.login label.checkbox .checkmark {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  transform: scale(0);
+  border-radius: 100vw;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), background 150ms ease;
+}
+form.login label.checkbox input[type=checkbox] {
+  display: none;
+}
+form.login label.checkbox input[type=checkbox]:checked + .checkmark {
+  background: #7942ee;
+  transform: scale(0.75);
+}
+form.login div {
+  font-weight: 600;
+  color: #f64343;
+}
+form.login button {
+  border: 2px solid rgba(121, 66, 238, 0.25);
+  background: transparent;
+  padding: 1rem 2rem;
+  font-weight: 500;
+  color: #7942ee;
+  border-radius: 100vw;
+  cursor: pointer;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+form.login button:hover {
+  background: #7942ee;
+  border-color: #7942ee;
+  color: #fff;
+}
+
+/*# sourceMappingURL=styles.css.map */

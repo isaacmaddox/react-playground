@@ -1,0 +1,63 @@
+// Colors
+//  - Theme
+$theme: #7942ee;
+$theme-100: lighten($theme, 20%);
+$theme-200: lighten($theme, 15%);
+$theme-300: lighten($theme, 10%);
+$theme-400: lighten($theme, 5%);
+$theme-600: darken($theme, 15%);
+$theme-700: darken($theme, 10%);
+$theme-800: darken($theme, 15%);
+$theme-900: darken($theme, 20%);
+//  - Other Colors
+$red: #f64343;
+//  - Neutrals
+$black: #222;
+$gray: #ddd;
+$darkGray: #aaa;
+$darkerGray: #777;
+$lightGray: #eee;
+$white: #fff;
+//  - Body Background
+$body-bg: #f9f9f9;
+//  - Box Shadows
+$bs-sm: 0px 2px 10px rgba($black, 0.1);
+$bs-md: 0px 4px 15px rgba($black, 0.125);
+$bs-lg: 0px 7px 20px rgba($black, 0.15);
+
+// Font Family
+$font-sans: "Montserrat", system-ui, Roboto, sans-serif;
+// Font size
+$fs-xs: 0.875rem;
+$fs-sm: 0.95rem;
+$fs-base: 1rem;
+$fs-lg: 1.125rem;
+$fs-xl: 1.25rem;
+$fs-2xl: 1.5rem;
+$fs-3xl: 2rem;
+$fs-4xl: 2.5rem;
+// Font Weight
+$fw-light: 300;
+$fw-base: 400;
+$fw-heavy: 500;
+$fw-bold: 600;
+$fw-bolder: 700;
+
+// Grid Sizes
+$grid-sm: 480px;
+$grid-md: 800px;
+$grid-lg: 1024px;
+$grid-xl: 1440px;
+// Spacing
+$spacing: 1rem;
+
+// Border Radius
+$br-sm: 0.25rem;
+$br-md: 0.5rem;
+$br-base: 1rem;
+$br-lg: 1.25rem;
+$br-round: 100vw;
+
+// Timing
+$easing: cubic-bezier(0.19, 1, 0.22, 1);
+$easing-basic: ease;

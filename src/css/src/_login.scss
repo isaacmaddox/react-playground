@@ -1,0 +1,142 @@
+form.login {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: $white;
+	border: 1px solid $lightGray;
+	padding: calc($spacing * 4);
+	display: flex;
+	flex-direction: column;
+	width: min(500px, calc(100% - $spacing * 2));
+	border-radius: $br-md;
+	box-shadow: $bs-lg;
+
+	> *:not(div) {
+		margin-block: $spacing;
+	}
+
+	> div {
+		margin-bottom: $spacing;
+	}
+
+	label {
+		position: relative;
+
+		span {
+			position: absolute;
+			top: 0%;
+			padding-inline: $spacing / 2;
+			left: $spacing;
+			transform: translateY(-50%);
+			color: $darkGray;
+			background: white;
+			transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
+			font-weight: $fw-heavy;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			border: 2px solid $lightGray;
+			background-color: $white;
+			padding: $spacing calc($spacing * 2);
+			width: 100%;
+			border-radius: $br-sm;
+			outline: none;
+			transition: border-color 150ms $easing-basic;
+
+			&:-webkit-autofill {
+				-webkit-box-shadow: 0px 0px 0px 30px white inset !important;
+				border-color: rgba($theme, 0.15);
+			}
+
+			&:focus {
+				border-color: $theme;
+
+				& + span {
+					top: 0;
+					left: $spacing;
+					transition: top 0.5s $easing, left 0.3s $easing, color 150ms $easing-basic;
+					color: $theme;
+				}
+			}
+
+			&[value=""]:not(:focus) + span {
+				top: 50%;
+				left: $spacing * 1.5;
+				transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
+			}
+
+			&.incorrect {
+				border-color: $red;
+
+				& + span,
+				&:focus + span {
+					color: $red;
+				}
+			}
+		}
+
+		&.checkbox {
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			border: 2px solid $lightGray;
+			position: relative;
+			border-radius: $br-round;
+			overflow: hidden;
+			vertical-align: middle;
+			transition: border-color 150ms $easing-basic;
+			margin-right: $spacing / 2;
+			cursor: pointer;
+
+			& + label {
+				cursor: pointer;
+			}
+
+			&:has(input[type="checkbox"]:checked) {
+				border-color: $theme;
+			}
+
+			.checkmark {
+				position: absolute;
+				inset: 0;
+				background: $white;
+				transform: scale(0);
+				border-radius: $br-round;
+				transition: transform 0.5s $easing, background 150ms $easing-basic;
+			}
+
+			input[type="checkbox"] {
+				display: none;
+			}
+
+			input[type="checkbox"]:checked + .checkmark {
+				background: $theme;
+				transform: scale(0.75);
+			}
+		}
+	}
+
+	div {
+		font-weight: $fw-bold;
+		color: $red;
+	}
+
+	button {
+		border: 2px solid rgba($theme, 0.25);
+		background: transparent;
+		padding: $spacing calc($spacing * 2);
+		font-weight: $fw-heavy;
+		color: $theme;
+		border-radius: $br-round;
+		cursor: pointer;
+		transition: background 150ms $easing-basic, border-color 150ms $easing-basic, color 150ms $easing-basic;
+
+		&:hover {
+			background: $theme;
+			border-color: $theme;
+			color: $white;
+		}
+	}
+}
