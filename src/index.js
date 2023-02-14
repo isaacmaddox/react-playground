@@ -5,12 +5,14 @@ import './css/styles.css';
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 
 class User {
-    constructor(id, username, password, handle, pfp) {
+    constructor(firstName, lastName, id, username, password, handle, pfp) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.id = id;
         this.username = username;
         this.password = password;
         this.handle = handle ? handle : username;
-        this.url = `user/${username}`;
+        this.url = `user/${handle}`;
         this.pfp = pfp ? pfp : './images/user-undefined.png';
     }
 }
@@ -31,29 +33,28 @@ class App extends React.Component {
             newHandleInputValue: '',
             newPassInputValue: '',
             confirmPassInputValue: '',
+            passEmpty: true,
             newPfp: './images/user-undefined.png',
         }
 
         this.users = [];
+
         if (localStorage.getItem('footphone-users') !== null) {
             JSON.parse(localStorage.getItem('footphone-users')).map(user => {
                 return this.users.push(user);
             })
-            // this.users = 
         }
 
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.inputUpdate = this.inputUpdate.bind(this);
-        this.createAccount = this.createAccount.bind(this);
+        this.toggleCreateAccount = this.toggleCreateAccount.bind(this);
         this.handleCreateAccount = this.handleCreateAccount.bind(this);
+        this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
     }
 
     handleLogin(e) {
         e.preventDefault();
-        console.log(
-            this.users
-        )
         if (this.users.length === 0) {
             this.setState({
                 userMatch: false,
@@ -113,36 +114,76 @@ class App extends React.Component {
     }
 
     inputUpdate(e, input) {
+        let empty = true;
+        let match = false;
         switch (input) {
             case 'username':
                 this.setState({
                     unameInputValue: e.target.value,
+                    failedLogin: false,
+                    userMatch: false
                 })
-                break;
+            break;
             case 'password':
                 this.setState({
                     passInputValue: e.target.value,
+                    failedLogin: false,
+                    userMatch: false,
                 })
-                break;
+            break;
             case 'newUname':
                 this.setState({
                     newUnameInputValue: e.target.value,
                 })
-                break;
+            break;
             case 'newHandle':
                 this.setState({
-                    newHandleInputValue: e.target.value !== '@' ? '@' + e.target.value.replace(/@/g, '') : '',
+                    newHandleInputValue: (e.target.value !== '@' && e.target.value !== '') ? '@' + e.target.value.replace(/@/g, '') : '',
                 })
-                break;
+            break;
             case 'newPass':
+                empty = true;
+                match = false;
+
+                if (this.state.confirmPassInputValue !== e.target.value) {
+                    match = false;
+                    empty = false;
+                } else {
+                    match = true;
+                    empty = false;
+                }
+                
+                if (e.target.value === '' || this.state.confirmPassInputValue === '') {
+                    empty = true;
+                }
+
                 this.setState({
                     newPassInputValue: e.target.value,
+                    passDoMatch: match,
+                    passEmpty: empty
                 })
-                break;
-            case 'confirmPass':
-                this.setState({
-                    confirmPassInputValue: e.target.value,
-                })
+            break;
+                case 'confirmPass':
+                    match = false;
+                    empty = true;
+
+                    if (this.state.newPassInputValue !== e.target.value) {
+                        match = false;
+                        empty = false;
+                    } else {
+                        match = true;
+                        empty = false;
+                    }
+
+                    if (e.target.value === '' || this.state.newPassInputValue === '') {
+                        empty = true;
+                    }
+
+                    this.setState({
+                        confirmPassInputValue: e.target.value,
+                        passDoMatch: match,
+                        passEmpty: empty
+                    })
                 break;
             case 'pfpFile':
                 if (e.target.files[0]) {
@@ -151,16 +192,43 @@ class App extends React.Component {
                         newPfpName: e.target.files[0].name,
                     })
                 }
+            break;
+            case 'firstName':
+                this.setState({
+                    firstNameValue: e.target.value,
+                });
+                break;
+            case 'lastName':
+                this.setState({
+                    lastNameValue: e.target.value,
+                })
                 break;
             default:
-                alert('arg');
+                alert(input);
                 break;
         }
     }
 
-    createAccount() {
+    toggleCreateAccount() {
         this.setState({
-            createAccount: true,
+            createAccount: !this.state.createAccount,
+            unameInputValue: '',
+            passInputValue: '',
+            failedLogin: false,
+            userMatch: false,
+            rememberUser: false,
+            // Signup Form
+            firstNameValue: '',
+            lastNameValue: '',
+            newUnameInputValue: '',
+            newHandleInputValue: '',
+            newPassInputValue: '',
+            confirmPassInputValue: '',
+            passEmpty: true,
+            passDoMatch: true,
+            newPfp: './images/user-undefined.png',
+            newPfpReset: true,
+            newPfpName: 'Default',
         })
     }
 
@@ -172,7 +240,7 @@ class App extends React.Component {
             })
             return;
         }
-        let newUser = new User(this.users.length + 1, this.state.newUnameInputValue, this.state.newPassInputValue, this.state.newHandleInputValue, this.state.newPfp)
+        let newUser = new User(this.state.firstNameValue, this.state.lastNameValue, this.users.length + 1, this.state.newUnameInputValue, this.state.newPassInputValue, this.state.newHandleInputValue, this.state.newPfp)
         this.users.push(newUser);
         localStorage.setItem('footphone-users', JSON.stringify(this.users));
 
@@ -191,15 +259,24 @@ class App extends React.Component {
             confirmPassInputValue: '',
             newPfp: './images/user-undefined.png',
         })
-    }   
+    }
+    
+    handleDeleteAccount() {
+        let index = this.users.indexOf(this.state.client);
+        this.users.splice(index, 1);
+        localStorage.setItem('footphone-users', JSON.stringify(this.users));
+        this.handleLogout();
+    }
 
     render() {
         if (this.state.client !== null) {
+            document.title = "Footphone - Shittiest Social Media Platform on the Internet";
             return (
                 <>
-                    <img src={this.state.client.pfp} alt="Profile" />
-                    <h1>Welcome, {this.state.client.username}</h1>
+                    <img src={this.state.client.pfp} alt="Profile" height="50" width="50" />
+                    <h1>Welcome, {this.state.client.firstName}</h1>
                     <button onClick={this.handleLogout}>Log Out</button>
+                    <button onClick={this.handleDeleteAccount}>Delete Account</button>
                 </>
             )
         } else {
@@ -209,7 +286,7 @@ class App extends React.Component {
                     <form onSubmit={this.handleLogin}>
                         <h2>Log In</h2>
                         <label>
-                            <input type="text" className={this.state.failedLogin && !this.state.userMatch ? 'incorrect' : ''} onChange={(e) => { this.inputUpdate(e, 'username') }} value={this.state.unameInputValue} />
+                            <input type="text" className={this.state.failedLogin ? 'incorrect' : ''} onChange={(e) => { this.inputUpdate(e, 'username') }} value={this.state.unameInputValue} />
                             <span>Username</span>
                         </label>
                         {
@@ -217,7 +294,7 @@ class App extends React.Component {
                             <div>User does not exist. Make sure you spelled the username correctly.</div>
                         }
                         <label>
-                            <input type="password" className={this.state.failedLogin && this.state.userMatch ? 'incorrect' : ''} onChange={(e) => { this.inputUpdate(e, 'password') }} value={this.state.passInputValue} />
+                            <input type="password" className={this.state.failedLogin ? 'incorrect' : ''} onChange={(e) => { this.inputUpdate(e, 'password') }} value={this.state.passInputValue} />
                             <span>Password</span>
                         </label>
                         {
@@ -235,7 +312,8 @@ class App extends React.Component {
                         </span>
                         <span>
                             <button type="submit" disabled={(this.state.unameInputValue !== "" && this.state.passInputValue !== "") ? false : true}>Log In</button>
-                            <p>No Account? <button className="link" onClick={this.createAccount} type="button">Sign Up</button></p>
+                            <p>No Account? <button className="link" onClick={this.toggleCreateAccount} type="button">Sign Up</button></p>
+                            <p>Forgot Your Password? <button className="link" onClick={this.toggleCreateAccount} type="button">Reset</button></p>
                         </span>
                     </form>
                 )
@@ -245,6 +323,14 @@ class App extends React.Component {
                     <form onSubmit={this.handleCreateAccount}>
                         <h2>Create Account</h2>
                         <label>
+                            <input type="text" value={this.state.firstNameValue} onChange={(e) => {this.inputUpdate(e, 'firstName')}} />
+                            <span>First Name</span>
+                        </label>
+                        <label>
+                            <input type="text" value={this.state.lastNameValue} onChange={(e) => {this.inputUpdate(e, 'lastName')}} />
+                            <span>Last Name</span>
+                        </label>
+                        <label>
                             <input type="text" value={this.state.newUnameInputValue} onChange={(e) => {this.inputUpdate(e, 'newUname')}} />
                             <span>Username</span>
                         </label>
@@ -253,25 +339,26 @@ class App extends React.Component {
                             <span>Handle</span>
                         </label>
                         <label>
-                            <input type="password" className={this.state.passNotMatch ? 'incorrect' : ''} value={this.state.newPassInputValue} onChange={(e) => {this.inputUpdate(e, 'newPass')}} />
+                            <input type="password" className={this.state.passEmpty ? '-' : '' + (this.state.passDoMatch ? ' correct' : 'incorrect')} value={this.state.newPassInputValue} onChange={(e) => {this.inputUpdate(e, 'newPass')}} />
                             <span>Password</span>
                         </label>
                         <label>
-                            <input type="password" className={this.state.passNotMatch ? 'incorrect' : ''} value={this.state.confirmPassInputValue} onChange={(e) => {this.inputUpdate(e, 'confirmPass')}} />
+                            <input type="password" className={this.state.passEmpty ? '-' : '' + (this.state.passDoMatch ? ' correct' : 'incorrect')} value={this.state.confirmPassInputValue} onChange={(e) => {this.inputUpdate(e, 'confirmPass')}} />
                             <span>Confirm Password</span>
                         </label>
                         {
-                            this.state.passNotMatch &&
+                            !this.state.passDoMatch && !this.state.passEmpty &&
                             <div>Passwords do not match.</div>
                         }
-                        <label htmlFor="pfpFile" id="fileSelect" className={this.state.newPfpName ? 'selected' : ''}>
+                        <label htmlFor="pfpFile" id="fileSelect" className={(this.state.newPfpName && this.state.newPfpName !== "Default") ? 'selected' : ''}>
                             <span className="static">Profile Picture</span>
                             <div>
                                 <img src={this.state.newPfp === null ? './images/user-undefined.png' : this.state.newPfp} alt="PFP" />
-                                <p>{this.state.newPfpName ? this.state.newPfpName : 'None Selected'}</p>
+                                <p>{this.state.newPfpName ? this.state.newPfpName : 'Default'}</p>
+                                <button type="button" onClick={() => {this.setState({ newPfp: null, newPfpName: undefined }); console.log(this.state)}}>Clear</button>
                             </div>
                         </label>
-                        <input id="pfpFile" type="file" onChange={(e) => {this.inputUpdate(e, 'pfpFile')}} />
+                        <input id="pfpFile" value={this.state.newPfpReset ? '' : null} type="file" accept="image/png, image/jpeg" onChange={(e) => {this.inputUpdate(e, 'pfpFile')}} />
                         <span>
                             <button 
                                 type="submit"
@@ -282,7 +369,7 @@ class App extends React.Component {
                                 Create Account
                             </button>
                             <p>
-                                Already have an account? <button className='link' type="button" onClick={() => {this.setState({ createAccount: false, })}}>Log In</button>
+                                Already have an account? <button className='link' type="button" onClick={this.toggleCreateAccount}>Log In</button>
                             </p>
                         </span>
                     </form>

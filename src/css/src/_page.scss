@@ -14,6 +14,16 @@
   font-weight: 400;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $gray;
+  border-radius: $br-round;
+}
+
 body,
 html {
   height: 100%;

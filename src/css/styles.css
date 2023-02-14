@@ -12,6 +12,16 @@
   font-weight: 400;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  border-radius: 100vw;
+}
+
 body,
 html {
   height: 100%;
@@ -45,7 +55,7 @@ form {
   transform: translate(-50%, -50%);
   background: #fff;
   border: 1px solid #eee;
-  padding: 4rem;
+  padding: 4rem 4rem;
   display: flex;
   flex-direction: column;
   width: min(500px, 100% - 2rem);
@@ -54,10 +64,14 @@ form {
   max-height: calc(100% - 4rem);
   overflow: auto;
 }
-form > *:not(div) {
-  margin-block: 1rem;
+form > *:not(div),
+form > *:not(span) {
+  margin-block: 0.5rem;
 }
 form > div {
+  margin-bottom: 0.5rem;
+}
+form > h2 {
   margin-bottom: 1rem;
 }
 form label {
@@ -67,12 +81,13 @@ form label span:not(.static) {
   position: absolute;
   top: 0%;
   padding-inline: 0.5rem;
-  left: 1rem;
+  left: 1.5rem;
   transform: translateY(-50%);
   color: #aaa;
-  background: white;
-  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+  background: #fff;
+  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease, font-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   font-weight: 500;
+  font-size: 0.775rem;
 }
 form label span.static {
   display: block;
@@ -105,17 +120,17 @@ form label input[type=password]:focus {
 form label input[type=text]:focus + span,
 form label input[type=password]:focus + span {
   top: 0;
-  left: 1rem;
-  transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1), left 0.3s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+  transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1), left 0.3s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease, font-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   color: #7942ee;
   cursor: default;
+  font-size: 0.775rem;
 }
 form label input[type=text][value=""]:not(:focus) + span,
 form label input[type=password][value=""]:not(:focus) + span {
   top: 50%;
-  left: 1.5rem;
-  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease;
+  transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease, font-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: text;
+  font-size: 1rem;
 }
 form label input[type=text].incorrect,
 form label input[type=password].incorrect {
@@ -125,6 +140,15 @@ form label input[type=text].incorrect + span, form label input[type=text].incorr
 form label input[type=password].incorrect + span,
 form label input[type=password].incorrect:focus + span {
   color: #f64343;
+}
+form label input[type=text].correct,
+form label input[type=password].correct {
+  border-color: #5acf50;
+}
+form label input[type=text].correct + span, form label input[type=text].correct:focus + span,
+form label input[type=password].correct + span,
+form label input[type=password].correct:focus + span {
+  color: #5acf50;
 }
 form label.checkbox {
   display: inline-block;
@@ -143,7 +167,10 @@ form label.checkbox + label {
   cursor: pointer;
 }
 form label.checkbox:hover {
-  border-color: rgba(121, 66, 238, 0.15);
+  border-color: rgba(121, 66, 238, 0.5);
+}
+form label.checkbox:has(+ label:hover) {
+  border-color: rgba(121, 66, 238, 0.5);
 }
 form label.checkbox:has(input[type=checkbox]:checked) {
   border-color: #7942ee;
@@ -161,7 +188,7 @@ form label.checkbox input[type=checkbox] {
 }
 form label.checkbox input[type=checkbox]:checked + .checkmark {
   background: #7942ee;
-  transform: scale(0.75);
+  transform: scale(0.65);
 }
 form > div {
   font-weight: 600;
@@ -197,6 +224,7 @@ form span > p {
   color: #777;
   text-align: center;
   margin-top: 1rem;
+  font-size: 0.875rem;
 }
 form span > p .link {
   background: #fff;
@@ -204,6 +232,7 @@ form span > p .link {
   border: none;
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.875rem;
 }
 form span > p .link:hover, form span > p .link:focus {
   text-decoration: underline;
@@ -227,6 +256,17 @@ form label#fileSelect div {
   width: 100%;
   padding: 1rem;
   cursor: pointer;
+  border-radius: 0.5rem;
+  border: 2px solid #eee;
+  transition: background 150ms ease, border-color 150ms ease;
+  position: relative;
+}
+form label#fileSelect div button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  aspect-ratio: 1/1;
 }
 form label#fileSelect div p {
   font-weight: 500;
@@ -238,18 +278,24 @@ form label#fileSelect div p {
 }
 form label#fileSelect div:hover {
   background: rgba(121, 66, 238, 0.05);
+  border-color: rgba(121, 66, 238, 0.25);
+}
+form label#fileSelect div:hover p {
+  color: #7942ee;
 }
 form label#fileSelect div:active {
   background: rgba(121, 66, 238, 0.1);
+  border-color: #7942ee;
 }
 form label#fileSelect img {
-  width: 50px;
+  width: 40px;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 50%;
-  outline: 2px solid #ddd;
-  outline-offset: 0.25rem;
-  transition: outline-color 150ms ease;
+}
+form label#fileSelect.selected div {
+  border-color: rgba(121, 66, 238, 0.5);
+  background: rgba(121, 66, 238, 0.1);
 }
 form label#fileSelect.selected div p {
   color: #7942ee;
@@ -258,7 +304,7 @@ form label#fileSelect.selected img {
   outline-color: #7942ee;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 800px) {
   body,
   html {
     background: #fff;
@@ -266,7 +312,7 @@ form label#fileSelect.selected img {
   form {
     width: 100%;
     max-height: 100%;
-    padding: 2rem;
+    padding-inline: 2rem;
     box-shadow: none;
     border: none;
   }

@@ -11,6 +11,7 @@ $theme-800: darken($theme, 15%);
 $theme-900: darken($theme, 20%);
 //  - Other Colors
 $red: #f64343;
+$green: #5acf50;
 //  - Neutrals
 $black: #222;
 $gray: #ddd;
@@ -28,6 +29,7 @@ $bs-lg: 0px 7px 20px rgba($black, 0.15);
 // Font Family
 $font-sans: "Montserrat", system-ui, Roboto, sans-serif;
 // Font size
+$fs-2xs: 0.775rem;
 $fs-xs: 0.875rem;
 $fs-sm: 0.95rem;
 $fs-base: 1rem;
