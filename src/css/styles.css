@@ -385,5 +385,119 @@ form label#fileSelect.selected img {
     border: none;
   }
 }
+nav {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(20%, 350px);
+  border-right: 2px solid #eee;
+  padding: 2rem;
+}
+nav > img {
+  width: min(200px, 100%);
+  margin-bottom: 1rem;
+}
+nav ul {
+  padding: unset;
+  list-style: none;
+}
+nav ul li {
+  margin-block: 1rem;
+}
+nav ul li button {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-radius: 100vw;
+  color: #222;
+  font-weight: 500;
+  transition: background 150ms ease, color 150ms ease;
+}
+nav ul li button svg * {
+  fill: #222;
+  transition: fill 150ms ease;
+}
+nav ul li button:hover, nav ul li button:focus {
+  background: rgba(121, 66, 238, 0.05);
+  color: #7942ee;
+}
+nav ul li button:hover svg *, nav ul li button:focus svg * {
+  fill: #7942ee;
+}
+nav ul li button:active {
+  background: rgba(121, 66, 238, 0.1);
+}
+nav ul li button.active {
+  background: rgba(121, 66, 238, 0.1);
+  font-weight: 600;
+  color: #7942ee;
+}
+nav ul li button.active svg * {
+  fill: #7942ee;
+}
+nav .user {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 2px solid #eee;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: max-content 1fr min-content;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+nav .user img {
+  height: auto;
+  width: 50px;
+}
+nav .user span p {
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+nav .user span p:first-child {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+nav .user span p:last-child {
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+nav .user button {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 100vw;
+  transition: background 150ms ease;
+}
+nav .user button svg {
+  transform: scale(1.25);
+}
+nav .user button svg * {
+  transition: fill 150ms ease;
+}
+nav .user button:hover {
+  background: rgba(121, 66, 238, 0.05);
+}
+nav .user button:hover svg * {
+  fill: #7942ee;
+}
 
 /*# sourceMappingURL=styles.css.map */

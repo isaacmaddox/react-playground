@@ -1,11 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Navbar from './Navbar';
 import './css/styles.css';
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 
+class Notification {
+    constructor(message, sender, displaySender) {
+        this.message = message;
+        this.sender = sender;
+        this.displaySender = displaySender;
+        this.dateTime = new Date();
+    }
+}
+
 class User {
-    constructor(firstName, lastName, id, username, password, handle, pfp) {
+    constructor(firstName, lastName, id, username, password, handle, pfp, adminPriv = false) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
@@ -14,6 +24,15 @@ class User {
         this.handle = handle !== '' ? handle : username;
         this.url = `user/${handle}`;
         this.pfp = pfp ? pfp : './images/user-undefined.png';
+        this.adminPriv = adminPriv;
+        this.friends = [];
+        this.likedPosts = [];
+    }
+
+    newNotification(message, sender = 'system', displaySender = false) {
+        this.notifications.push(
+            new Notification(message, sender, displaySender)
+        )
     }
 }
 
@@ -35,6 +54,9 @@ class App extends React.Component {
             confirmPassInputValue: '',
             passEmpty: true,
             newPfp: './images/user-undefined.png',
+
+            // Page Values
+            currentView: 'home',
         }
 
         this.users = [];
@@ -51,6 +73,7 @@ class App extends React.Component {
         this.toggleCreateAccount = this.toggleCreateAccount.bind(this);
         this.handleCreateAccount = this.handleCreateAccount.bind(this);
         this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
+        this.handlePageChange = this.handlePageChange.bind(this);
     }
 
     handleLogin(e) {
@@ -101,6 +124,8 @@ class App extends React.Component {
 
     componentDidMount() {
         // Check for existing login
+        let newUser = new User('Admin', 'Root', 1, 'ROOT', 'ROOT', '@admin', './images/user-admin.png', true);
+        this.users.push(newUser);
         let token = parseInt(document.cookie.split(';')[0].split('=')[1]);
         let user;
         if (token) {
@@ -240,7 +265,7 @@ class App extends React.Component {
             })
             return;
         }
-        let newUser = new User(this.state.firstNameValue, this.state.lastNameValue, this.users.length + 1, this.state.newUnameInputValue, this.state.newPassInputValue, this.state.newHandleInputValue, this.state.newPfp)
+        let newUser = new User(this.state.firstNameValue, this.state.lastNameValue, this.users.length + 1, this.state.newUnameInputValue, this.state.newPassInputValue, this.state.newHandleInputValue.replace(/@/g, ''), this.state.newPfp)
         this.users.push(newUser);
         localStorage.setItem('footphone-users', JSON.stringify(this.users));
 
@@ -268,7 +293,15 @@ class App extends React.Component {
         this.handleLogout();
     }
 
+    handlePageChange(newPage) {
+        this.setState({
+            currentView: newPage,
+        })
+    }
+
     render() {
+        return <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />;
+
         if (this.state.client !== null) {
             document.title = "Footphone - Shittiest Social Media Platform on the Internet";
             return (
