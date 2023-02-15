@@ -1,4 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --red: #f64343;
+  --green: #5acf50;
+  --black: #222;
+  --gray: #ddd;
+  --darkGray: #aaa;
+  --darkerGray: #777;
+  --lightGray: #eee;
+  --white: #fff;
+  --body-bg: #f9f9f9;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --red: #f15d5d;
+    --green: #82e479;
+    --white: #222;
+    --black: #fff;
+    --lightGray: #444;
+    --gray: #555;
+    --darkGray: #999;
+    --darkerGray: #ccc;
+    --body-bg: #000;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -10,6 +35,7 @@
   font-family: "Montserrat", system-ui, Roboto, sans-serif;
   font-size: 1rem;
   font-weight: 400;
+  color: #222;
 }
 
 ::-webkit-scrollbar {
@@ -57,10 +83,12 @@ form {
   border: 1px solid #eee;
   padding: 4rem 4rem;
   display: flex;
-  flex-direction: column;
-  width: min(500px, 100% - 2rem);
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: min(600px, 100% - 2rem);
   border-radius: 0.5rem;
-  box-shadow: 0px 7px 20px rgba(34, 34, 34, 0.15);
+  box-shadow: 0px 5px 20px rgba(34, 34, 34, 0.175);
   max-height: calc(100% - 4rem);
   overflow: auto;
 }
@@ -73,9 +101,20 @@ form > div {
 }
 form > h2 {
   margin-bottom: 1rem;
+  width: 100%;
+}
+form > h2 span {
+  font-size: 0.95rem;
+  display: block;
+  color: #f64343;
+  font-weight: 500;
 }
 form label {
   position: relative;
+  width: 100%;
+}
+form label.inline {
+  width: calc(50% - 0.5rem);
 }
 form label span:not(.static) {
   position: absolute;
@@ -110,7 +149,7 @@ form label input[type=password] {
 }
 form label input[type=text]:-webkit-autofill,
 form label input[type=password]:-webkit-autofill {
-  -webkit-box-shadow: 0px 0px 0px 30px white inset !important;
+  -webkit-box-shadow: 0px 0px 0px 30px #fff inset !important;
   border-color: rgba(121, 66, 238, 0.15);
 }
 form label input[type=text]:focus,
@@ -199,26 +238,32 @@ form > span {
   width: 100%;
 }
 form > span > button {
-  border: 2px solid rgba(121, 66, 238, 0.25);
-  background: transparent;
+  border: 2px solid #7942ee;
+  background: #7942ee;
   padding: 1rem 2rem;
-  font-weight: 500;
-  color: #7942ee;
+  font-weight: 600;
+  color: #fff;
   border-radius: 100vw;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease, box-shadow 150ms ease;
   width: 100%;
 }
 form > span > button:not(:disabled):hover, form > span > button:not(:disabled):focus {
-  background: #7942ee;
-  border-color: #7942ee;
-  color: #fff;
+  background: #8a59f0;
+  border-color: #8a59f0;
+  box-shadow: 0px 5px 20px rgba(34, 34, 34, 0.175);
+}
+form > span > button:not(:disabled):active {
+  background: #9a71f2;
+  border-color: #9a71f2;
+  box-shadow: 0px 4px 15px rgba(34, 34, 34, 0.1);
 }
 form > span > button:disabled {
   background: #fff;
   border-color: #eee;
   color: #aaa;
   cursor: default;
+  opacity: 0.5;
 }
 form span > p {
   color: #777;
@@ -233,6 +278,7 @@ form span > p .link {
   cursor: pointer;
   font-weight: 600;
   font-size: 0.875rem;
+  padding: 0px;
 }
 form span > p .link:hover, form span > p .link:focus {
   text-decoration: underline;
@@ -248,13 +294,23 @@ form label#fileSelect {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  cursor: pointer;
+}
+form label#fileSelect:hover div {
+  background: rgba(121, 66, 238, 0.05);
+  border-color: rgba(121, 66, 238, 0.25);
+}
+form label#fileSelect:hover div p,
+form label#fileSelect:hover div button {
+  color: #7942ee;
 }
 form label#fileSelect div {
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content 1fr min-content;
   align-items: center;
   gap: 1rem;
   width: 100%;
-  padding: 1rem;
+  padding-left: 1rem;
   cursor: pointer;
   border-radius: 0.5rem;
   border: 2px solid #eee;
@@ -262,11 +318,21 @@ form label#fileSelect div {
   position: relative;
 }
 form label#fileSelect div button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  height: 4rem;
   aspect-ratio: 1/1;
+  border: none;
+  background: transparent;
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: background 150ms ease, color 150ms ease;
+}
+form label#fileSelect div button:hover, form label#fileSelect div button:focus {
+  background: rgba(121, 66, 238, 0.1);
+}
+form label#fileSelect div button:active {
+  background: rgba(121, 66, 238, 0.15);
 }
 form label#fileSelect div p {
   font-weight: 500;
@@ -280,7 +346,8 @@ form label#fileSelect div:hover {
   background: rgba(121, 66, 238, 0.05);
   border-color: rgba(121, 66, 238, 0.25);
 }
-form label#fileSelect div:hover p {
+form label#fileSelect div:hover p,
+form label#fileSelect div:hover button {
   color: #7942ee;
 }
 form label#fileSelect div:active {
@@ -297,7 +364,8 @@ form label#fileSelect.selected div {
   border-color: rgba(121, 66, 238, 0.5);
   background: rgba(121, 66, 238, 0.1);
 }
-form label#fileSelect.selected div p {
+form label#fileSelect.selected div p,
+form label#fileSelect.selected div button {
   color: #7942ee;
 }
 form label#fileSelect.selected img {

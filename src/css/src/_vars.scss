@@ -1,3 +1,27 @@
+:root {
+	--red: #f64343;
+	--green: #5acf50;
+	--black: #222;
+	--gray: #ddd;
+	--darkGray: #aaa;
+	--darkerGray: #777;
+	--lightGray: #eee;
+	--white: #fff;
+	--body-bg: #f9f9f9;
+
+	@media (prefers-color-scheme: dark) {
+		--red: #f15d5d;
+		--green: #82e479;
+		--white: #222;
+		--black: #fff;
+		--lightGray: #444;
+		--gray: #555;
+		--darkGray: #999;
+		--darkerGray: #ccc;
+		--body-bg: #000;
+	}
+}
+
 // Colors
 //  - Theme
 $theme: #7942ee;
@@ -22,9 +46,9 @@ $white: #fff;
 //  - Body Background
 $body-bg: #f9f9f9;
 //  - Box Shadows
-$bs-sm: 0px 2px 10px rgba($black, 0.1);
-$bs-md: 0px 4px 15px rgba($black, 0.125);
-$bs-lg: 0px 7px 20px rgba($black, 0.15);
+$bs-sm: 0px 2px 10px rgba($black, 0.05);
+$bs-md: 0px 4px 15px rgba($black, 0.1);
+$bs-lg: 0px 5px 20px rgba($black, 0.175);
 
 // Font Family
 $font-sans: "Montserrat", system-ui, Roboto, sans-serif;

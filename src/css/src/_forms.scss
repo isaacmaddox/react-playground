@@ -1,316 +1,360 @@
 form {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: $white;
-  border: 1px solid $lightGray;
-  padding: calc($spacing * 4) calc($spacing * 4);
-  display: flex;
-  flex-direction: column;
-  width: min(500px, calc(100% - $spacing * 2));
-  border-radius: $br-md;
-  box-shadow: $bs-lg;
-  max-height: calc(100% - $spacing * 4);
-  overflow: auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: $white;
+	border: 1px solid $lightGray;
+	padding: calc($spacing * 4) calc($spacing * 4);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: min(600px, calc(100% - $spacing * 2));
+	border-radius: $br-md;
+	box-shadow: $bs-lg;
+	max-height: calc(100% - $spacing * 4);
+	overflow: auto;
 
-  > *:not(div),
-  > *:not(span) {
-    margin-block: calc($spacing / 2);
-  }
+	> *:not(div),
+	> *:not(span) {
+		margin-block: calc($spacing / 2);
+	}
 
-  > div {
-    margin-bottom: calc($spacing / 2);
-  }
+	> div {
+		margin-bottom: calc($spacing / 2);
+	}
 
-  > h2 {
-    margin-bottom: $spacing;
-  }
+	> h2 {
+		margin-bottom: $spacing;
+		width: 100%;
 
-  label {
-    position: relative;
+		span {
+			font-size: $fs-sm;
+			display: block;
+			color: $red;
+			font-weight: $fw-heavy;
+		}
+	}
 
-    span:not(.static) {
-      position: absolute;
-      top: 0%;
-      padding-inline: calc($spacing / 2);
-      left: calc($spacing * 1.5);
-      transform: translateY(-50%);
-      color: $darkGray;
-      background: $white;
-      transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic,
-        font-size 0.5s $easing;
-      font-weight: $fw-heavy;
-      font-size: $fs-2xs;
-    }
+	label {
+		position: relative;
+		width: 100%;
 
-    span.static {
-      display: block;
-      width: 100%;
-      color: $darkGray;
-      transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
-      font-weight: $fw-heavy;
-    }
+		&.inline {
+			width: calc(50% - $spacing / 2);
+		}
 
-    input[type="text"],
-    input[type="password"] {
-      border: 2px solid $lightGray;
-      background-color: $white;
-      padding: $spacing calc($spacing * 2);
-      width: 100%;
-      border-radius: $br-sm;
-      outline: none;
-      transition: border-color 150ms $easing-basic;
-      font-weight: $fw-heavy;
-      color: $black;
+		span:not(.static) {
+			position: absolute;
+			top: 0%;
+			padding-inline: calc($spacing / 2);
+			left: calc($spacing * 1.5);
+			transform: translateY(-50%);
+			color: $darkGray;
+			background: $white;
+			transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+			font-weight: $fw-heavy;
+			font-size: $fs-2xs;
+		}
 
-      &:-webkit-autofill {
-        -webkit-box-shadow: 0px 0px 0px 30px white inset !important;
-        border-color: rgba($theme, 0.15);
-      }
+		span.static {
+			display: block;
+			width: 100%;
+			color: $darkGray;
+			transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
+			font-weight: $fw-heavy;
+		}
 
-      &:focus {
-        border-color: $theme;
+		input[type="text"],
+		input[type="password"] {
+			border: 2px solid $lightGray;
+			background-color: $white;
+			padding: $spacing calc($spacing * 2);
+			width: 100%;
+			border-radius: $br-sm;
+			outline: none;
+			transition: border-color 150ms $easing-basic;
+			font-weight: $fw-heavy;
+			color: $black;
 
-        & + span {
-          top: 0;
-          transition: top 0.5s $easing, left 0.3s $easing,
-            color 150ms $easing-basic, font-size 0.5s $easing;
-          color: $theme;
-          cursor: default;
-          font-size: $fs-2xs;
-        }
-      }
+			&:-webkit-autofill {
+				-webkit-box-shadow: 0px 0px 0px 30px $white inset !important;
+				border-color: rgba($theme, 0.15);
+			}
 
-      &[value=""]:not(:focus) + span {
-        top: 50%;
-        transition: top 0.3s $easing, left 0.5s $easing,
-          color 150ms $easing-basic, font-size 0.5s $easing;
-        cursor: text;
-        font-size: $fs-base;
-      }
+			&:focus {
+				border-color: $theme;
 
-      &.incorrect {
-        border-color: $red;
+				& + span {
+					top: 0;
+					transition: top 0.5s $easing, left 0.3s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+					color: $theme;
+					cursor: default;
+					font-size: $fs-2xs;
+				}
+			}
 
-        & + span,
-        &:focus + span {
-          color: $red;
-        }
-      }
+			&[value=""]:not(:focus) + span {
+				top: 50%;
+				transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+				cursor: text;
+				font-size: $fs-base;
+			}
 
-      &.correct {
-        border-color: $green;
+			&.incorrect {
+				border-color: $red;
 
-        & + span,
-        &:focus + span {
-          color: $green;
-        }
-      }
-    }
+				& + span,
+				&:focus + span {
+					color: $red;
+				}
+			}
 
-    &.checkbox {
-      display: inline-block;
-      height: 20px;
-      width: 20px;
-      border: 2px solid $lightGray;
-      position: relative;
-      border-radius: $br-round;
-      overflow: hidden;
-      vertical-align: middle;
-      transition: border-color 150ms $easing-basic;
-      margin-right: calc($spacing / 2);
-      cursor: pointer;
+			&.correct {
+				border-color: $green;
 
-      & + label {
-        cursor: pointer;
-      }
+				& + span,
+				&:focus + span {
+					color: $green;
+				}
+			}
+		}
 
-      &:hover {
-        border-color: rgba($theme, 0.5);
-      }
+		&.checkbox {
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			border: 2px solid $lightGray;
+			position: relative;
+			border-radius: $br-round;
+			overflow: hidden;
+			vertical-align: middle;
+			transition: border-color 150ms $easing-basic;
+			margin-right: calc($spacing / 2);
+			cursor: pointer;
 
-      &:has(+ label:hover) {
-        border-color: rgba($theme, 0.5);
-      }
+			& + label {
+				cursor: pointer;
+			}
 
-      &:has(input[type="checkbox"]:checked) {
-        border-color: $theme;
-      }
+			&:hover {
+				border-color: rgba($theme, 0.5);
+			}
 
-      .checkmark {
-        position: absolute;
-        inset: 0;
-        background: $white;
-        transform: scale(0);
-        border-radius: $br-round;
-        transition: transform 0.5s $easing, background 150ms $easing-basic;
-      }
+			&:has(+ label:hover) {
+				border-color: rgba($theme, 0.5);
+			}
 
-      input[type="checkbox"] {
-        display: none;
-      }
+			&:has(input[type="checkbox"]:checked) {
+				border-color: $theme;
+			}
 
-      input[type="checkbox"]:checked + .checkmark {
-        background: $theme;
-        transform: scale(0.65);
-      }
-    }
-  }
+			.checkmark {
+				position: absolute;
+				inset: 0;
+				background: $white;
+				transform: scale(0);
+				border-radius: $br-round;
+				transition: transform 0.5s $easing, background 150ms $easing-basic;
+			}
 
-  > div {
-    font-weight: $fw-bold;
-    color: $red;
-  }
+			input[type="checkbox"] {
+				display: none;
+			}
 
-  > span {
-    display: block;
-    width: 100%;
+			input[type="checkbox"]:checked + .checkmark {
+				background: $theme;
+				transform: scale(0.65);
+			}
+		}
+	}
 
-    > button {
-      border: 2px solid rgba($theme, 0.25);
-      background: transparent;
-      padding: $spacing calc($spacing * 2);
-      font-weight: $fw-heavy;
-      color: $theme;
-      border-radius: $br-round;
-      cursor: pointer;
-      transition: background 150ms $easing-basic,
-        border-color 150ms $easing-basic, color 150ms $easing-basic,
-        opacity 150ms $easing-basic;
-      width: 100%;
+	> div {
+		font-weight: $fw-bold;
+		color: $red;
+	}
 
-      &:not(:disabled):hover,
-      &:not(:disabled):focus {
-        background: $theme;
-        border-color: $theme;
-        color: $white;
-      }
+	> span {
+		display: block;
+		width: 100%;
 
-      &:disabled {
-        background: $white;
-        border-color: $lightGray;
-        color: $darkGray;
-        cursor: default;
-      }
-    }
-  }
+		> button {
+			border: 2px solid $theme;
+			background: $theme;
+			padding: $spacing calc($spacing * 2);
+			font-weight: $fw-bold;
+			color: $white;
+			border-radius: $br-round;
+			cursor: pointer;
+			transition: background 150ms $easing-basic, border-color 150ms $easing-basic, color 150ms $easing-basic, opacity 150ms $easing-basic, box-shadow 150ms $easing-basic;
+			width: 100%;
 
-  span > p {
-    color: $darkerGray;
-    text-align: center;
-    margin-top: $spacing;
-    font-size: $fs-xs;
+			&:not(:disabled):hover,
+			&:not(:disabled):focus {
+				background: $theme-400;
+				border-color: $theme-400;
+				box-shadow: $bs-lg;
+			}
 
-    .link {
-      background: $white;
-      color: $theme;
-      border: none;
-      cursor: pointer;
-      font-weight: $fw-bold;
-      font-size: $fs-xs;
+			&:not(:disabled):active {
+				background: $theme-300;
+				border-color: $theme-300;
+				box-shadow: $bs-md;
+			}
 
-      &:hover,
-      &:focus {
-        text-decoration: underline;
-        color: $theme-400;
-      }
+			&:disabled {
+				background: $white;
+				border-color: $lightGray;
+				color: $darkGray;
+				cursor: default;
+				opacity: 0.5;
+			}
+		}
+	}
 
-      &:active {
-        color: $theme-300;
-      }
-    }
-  }
+	span > p {
+		color: $darkerGray;
+		text-align: center;
+		margin-top: $spacing;
+		font-size: $fs-xs;
 
-  input[type="file"] {
-    display: none;
-  }
+		.link {
+			background: $white;
+			color: $theme;
+			border: none;
+			cursor: pointer;
+			font-weight: $fw-bold;
+			font-size: $fs-xs;
+			padding: 0px;
 
-  label#fileSelect {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing;
+			&:hover,
+			&:focus {
+				text-decoration: underline;
+				color: $theme-400;
+			}
 
-    div {
-      display: flex;
-      align-items: center;
-      gap: $spacing;
-      width: 100%;
-      padding: $spacing;
-      cursor: pointer;
-      border-radius: $br-md;
-      border: 2px solid $lightGray;
-      transition: background 150ms $easing-basic,
-        border-color 150ms $easing-basic;
-      position: relative;
+			&:active {
+				color: $theme-300;
+			}
+		}
+	}
 
-      button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        aspect-ratio: 1/1;
-      }
+	input[type="file"] {
+		display: none;
+	}
 
-      p {
-        font-weight: $fw-heavy;
-        color: $black;
-        border-radius: $br-md;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+	label#fileSelect {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing;
+		cursor: pointer;
 
-      &:hover {
-        background: rgba($theme, 0.05);
-        border-color: rgba($theme, 0.25);
+		&:hover div {
+			background: rgba($theme, 0.05);
+			border-color: rgba($theme, 0.25);
 
-        p {
-          color: $theme;
-        }
-      }
+			p,
+			button {
+				color: $theme;
+			}
+		}
 
-      &:active {
-        background: rgba($theme, 0.1);
-        border-color: $theme;
-      }
-    }
+		div {
+			display: grid;
+			grid-template-columns: max-content 1fr min-content;
+			align-items: center;
+			gap: $spacing;
+			width: 100%;
+			padding-left: $spacing;
+			cursor: pointer;
+			border-radius: $br-md;
+			border: 2px solid $lightGray;
+			transition: background 150ms $easing-basic, border-color 150ms $easing-basic;
+			position: relative;
 
-    img {
-      width: 40px;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+			button {
+				height: $spacing * 4;
+				aspect-ratio: 1/1;
+				border: none;
+				background: transparent;
+				font-size: $fs-2xs;
+				font-weight: $fw-bold;
+				cursor: pointer;
+				border-radius: $br-sm;
+				transition: background 150ms $easing-basic, color 150ms $easing-basic;
 
-    &.selected {
-      div {
-        border-color: rgba($theme, 0.5);
-        background: rgba($theme, 0.1);
-      }
+				&:hover,
+				&:focus {
+					background: rgba($theme, 0.1);
+				}
 
-      div p {
-        color: $theme;
-      }
+				&:active {
+					background: rgba($theme, 0.15);
+				}
+			}
 
-      img {
-        outline-color: $theme;
-      }
-    }
-  }
+			p {
+				font-weight: $fw-heavy;
+				color: $black;
+				border-radius: $br-md;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			&:hover {
+				background: rgba($theme, 0.05);
+				border-color: rgba($theme, 0.25);
+
+				p,
+				button {
+					color: $theme;
+				}
+			}
+
+			&:active {
+				background: rgba($theme, 0.1);
+				border-color: $theme;
+			}
+		}
+
+		img {
+			width: 40px;
+			aspect-ratio: 1/1;
+			object-fit: cover;
+			border-radius: 50%;
+		}
+
+		&.selected {
+			div {
+				border-color: rgba($theme, 0.5);
+				background: rgba($theme, 0.1);
+			}
+
+			div p,
+			div button {
+				color: $theme;
+			}
+
+			img {
+				outline-color: $theme;
+			}
+		}
+	}
 }
 
 @media (max-width: $grid-md) {
-  body,
-  html {
-    background: $white;
-  }
+	body,
+	html {
+		background: $white;
+	}
 
-  form {
-    width: 100%;
-    max-height: 100%;
-    padding-inline: calc($spacing * 2);
-    box-shadow: none;
-    border: none;
-  }
+	form {
+		width: 100%;
+		max-height: 100%;
+		padding-inline: calc($spacing * 2);
+		box-shadow: none;
+		border: none;
+	}
 }
