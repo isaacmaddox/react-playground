@@ -1,202 +1,192 @@
 nav {
-  background: $white;
-  height: 100%;
-  position: relative;
-  width: 100%;
-  border-right: 2px solid $lightGray;
-  padding: $spacing * 2;
+	background: $white;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	border-right: 2px solid $lightGray;
+	padding: $spacing * 2;
 
-  @media (max-width: $grid-md) {
-    display: none;
-  }
+	@media (max-width: $grid-md) {
+		display: none;
+	}
 
-  & > img {
-    width: min(200px, 100%);
-    margin-bottom: $spacing;
-  }
+	& > img {
+		width: min(200px, 100%);
+		margin-bottom: $spacing;
+	}
 
-  ul {
-    padding: unset;
-    list-style: none;
+	ul {
+		padding: unset;
+		list-style: none;
 
-    li {
-      margin-block: $spacing;
+		li {
+			margin-block: $spacing;
 
-      button {
-        display: flex;
-        gap: $spacing;
-        align-items: center;
-        width: 100%;
-        padding: $spacing $spacing * 2;
-        text-align: left;
-        cursor: pointer;
-        border: none;
-        outline: none;
-        background: transparent;
-        border-radius: $br-round;
-        color: $black;
-        font-weight: $fw-heavy;
-        transition: background 150ms $easing-basic, color 150ms $easing-basic;
+			button {
+				display: flex;
+				gap: $spacing;
+				align-items: center;
+				width: 100%;
+				padding: $spacing $spacing * 2;
+				text-align: left;
+				cursor: pointer;
+				border: none;
+				outline: none;
+				background: transparent;
+				border-radius: $br-round;
+				color: $black;
+				font-weight: $fw-heavy;
+				transition: background 150ms $easing-basic, color 150ms $easing-basic;
 
-        svg * {
-          fill: $black;
-          transition: fill 150ms $easing-basic;
-        }
+				svg * {
+					fill: $black;
+					transition: fill 150ms $easing-basic;
+				}
 
-        @media (max-width: $grid-lg) {
-          font-size: 0rem;
-        }
+				&:hover,
+				&:focus {
+					background: rgba($theme, 0.05);
+					color: $theme;
 
-        &:hover,
-        &:focus {
-          background: rgba($theme, 0.05);
-          color: $theme;
+					svg * {
+						fill: $theme;
+					}
+				}
 
-          svg * {
-            fill: $theme;
-          }
-        }
+				&:active {
+					background: rgba($theme, 0.1);
+				}
 
-        &:active {
-          background: rgba($theme, 0.1);
-        }
+				&.active {
+					background: rgba($theme, 0.1);
+					font-weight: $fw-bold;
+					color: $theme;
 
-        &.active {
-          background: rgba($theme, 0.1);
-          font-weight: $fw-bold;
-          color: $theme;
+					svg * {
+						fill: $theme;
+					}
+				}
+			}
+		}
+	}
 
-          svg * {
-            fill: $theme;
-          }
-        }
-      }
-    }
-  }
+	.user {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		border-top: 2px solid $lightGray;
+		padding: $spacing;
+		display: grid;
+		grid-template-columns: max-content 1fr min-content;
+		align-items: center;
+		gap: $spacing;
+		cursor: pointer;
 
-  .user {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-top: 2px solid $lightGray;
-    padding: $spacing;
-    display: grid;
-    grid-template-columns: max-content 1fr min-content;
-    align-items: center;
-    gap: $spacing;
-    cursor: pointer;
+		&:has(button.full-width) {
+			display: flex;
+			flex-direction: column;
+			gap: $spacing;
+			align-items: center;
+			cursor: default;
+		}
 
-    @media (max-width: $grid-lg) {
-      *:not(img) {
-        display: none;
-      }
-    }
+		img {
+			height: auto;
+			width: 50px;
+		}
 
-    &:has(button.full-width) {
-      display: flex;
-      flex-direction: column;
-      gap: $spacing;
-      align-items: center;
-      cursor: default;
-    }
+		span {
+			p {
+				max-width: 100%;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
 
-    img {
-      height: auto;
-      width: 50px;
-    }
+			p:first-child {
+				font-size: $fs-lg;
+				font-weight: $fw-bold;
+			}
 
-    span {
-      p {
-        max-width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
+			p:last-child {
+				font-size: $fs-sm;
+				font-weight: $fw-base;
+			}
+		}
 
-      p:first-child {
-        font-size: $fs-lg;
-        font-weight: $fw-bold;
-      }
+		button {
+			width: 50px;
+			height: 50px;
+			display: grid;
+			place-items: center;
+			background: transparent;
+			border: none;
+			cursor: pointer;
+			outline: none;
+			border-radius: $br-round;
+			transition: background 150ms $easing-basic;
 
-      p:last-child {
-        font-size: $fs-sm;
-        font-weight: $fw-base;
-      }
-    }
+			&.full-width {
+				width: 100%;
+				background: $theme;
+				color: $white;
+				font-weight: $fw-bold;
+				font-size: $fs-base;
 
-    button {
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      outline: none;
-      border-radius: $br-round;
-      transition: background 150ms $easing-basic;
+				&:hover,
+				&:focus {
+					background: $theme-400;
+					box-shadow: $bs-lg;
+				}
 
-      &.full-width {
-        width: 100%;
-        background: $theme;
-        color: $white;
-        font-weight: $fw-bold;
-        font-size: $fs-base;
+				&:active {
+					background: $theme-300;
+					box-shadow: $bs-md;
+				}
+			}
 
-        &:hover,
-        &:focus {
-          background: $theme-400;
-          box-shadow: $bs-lg;
-        }
+			svg {
+				transform: scale(1.25);
 
-        &:active {
-          background: $theme-300;
-          box-shadow: $bs-md;
-        }
-      }
+				* {
+					transition: fill 150ms $easing-basic;
+				}
+			}
 
-      svg {
-        transform: scale(1.25);
+			&:hover {
+				background: rgba($theme, 0.05);
 
-        * {
-          transition: fill 150ms $easing-basic;
-        }
-      }
+				svg * {
+					fill: $theme;
+				}
+			}
+		}
 
-      &:hover {
-        background: rgba($theme, 0.05);
+		& > p {
+			width: 100%;
+			text-align: center;
+			font-size: $fs-sm;
 
-        svg * {
-          fill: $theme;
-        }
-      }
-    }
+			button.link {
+				display: inline;
+				width: auto;
+				color: $theme;
+				font-size: $fs-sm;
+				font-weight: $fw-heavy;
+				background: transparent;
+				height: fit-content;
 
-    & > p {
-      width: 100%;
-      text-align: center;
-      font-size: $fs-sm;
+				&:hover,
+				&:focus {
+					text-decoration: underline;
+					color: $theme-400;
+				}
 
-      button.link {
-        display: inline;
-        width: auto;
-        color: $theme;
-        font-size: $fs-sm;
-        font-weight: $fw-heavy;
-        background: transparent;
-        height: fit-content;
-
-        &:hover,
-        &:focus {
-          text-decoration: underline;
-          color: $theme-400;
-        }
-
-        &:active {
-          color: $theme-300;
-        }
-      }
-    }
-  }
+				&:active {
+					color: $theme-300;
+				}
+			}
+		}
+	}
 }

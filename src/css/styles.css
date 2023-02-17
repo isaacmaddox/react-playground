@@ -57,6 +57,8 @@ html {
 
 img {
   max-width: 100%;
+  object-fit: cover;
+  image-rendering: optimizeSpeed;
 }
 
 h1 {
@@ -95,6 +97,11 @@ h3 {
   height: 100vh;
 }
 
+@media (max-width: 1024px) {
+  .main-content .sidebar {
+    display: none;
+  }
+}
 @media (max-width: 800px) {
   .page-wrap {
     grid-template-columns: 1fr;
@@ -160,7 +167,8 @@ form label span.static {
   font-weight: 500;
 }
 form label input[type=text],
-form label input[type=password] {
+form label input[type=password],
+form label input[type=email] {
   border: 2px solid #eee;
   background-color: #fff;
   padding: 1rem 2rem;
@@ -172,16 +180,19 @@ form label input[type=password] {
   color: #222;
 }
 form label input[type=text]:-webkit-autofill,
-form label input[type=password]:-webkit-autofill {
+form label input[type=password]:-webkit-autofill,
+form label input[type=email]:-webkit-autofill {
   -webkit-box-shadow: 0px 0px 0px 30px #fff inset !important;
   border-color: rgba(121, 66, 238, 0.15);
 }
 form label input[type=text]:focus,
-form label input[type=password]:focus {
+form label input[type=password]:focus,
+form label input[type=email]:focus {
   border-color: #7942ee;
 }
 form label input[type=text]:focus + span,
-form label input[type=password]:focus + span {
+form label input[type=password]:focus + span,
+form label input[type=email]:focus + span {
   top: 0;
   transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1), left 0.3s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease, font-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   color: #7942ee;
@@ -189,28 +200,35 @@ form label input[type=password]:focus + span {
   font-size: 0.775rem;
 }
 form label input[type=text][value=""]:not(:focus) + span,
-form label input[type=password][value=""]:not(:focus) + span {
+form label input[type=password][value=""]:not(:focus) + span,
+form label input[type=email][value=""]:not(:focus) + span {
   top: 50%;
   transition: top 0.3s cubic-bezier(0.19, 1, 0.22, 1), left 0.5s cubic-bezier(0.19, 1, 0.22, 1), color 150ms ease, font-size 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: text;
   font-size: 1rem;
 }
 form label input[type=text].incorrect,
-form label input[type=password].incorrect {
+form label input[type=password].incorrect,
+form label input[type=email].incorrect {
   border-color: #f64343;
 }
 form label input[type=text].incorrect + span, form label input[type=text].incorrect:focus + span,
 form label input[type=password].incorrect + span,
-form label input[type=password].incorrect:focus + span {
+form label input[type=password].incorrect:focus + span,
+form label input[type=email].incorrect + span,
+form label input[type=email].incorrect:focus + span {
   color: #f64343;
 }
 form label input[type=text].correct,
-form label input[type=password].correct {
+form label input[type=password].correct,
+form label input[type=email].correct {
   border-color: #5acf50;
 }
 form label input[type=text].correct + span, form label input[type=text].correct:focus + span,
 form label input[type=password].correct + span,
-form label input[type=password].correct:focus + span {
+form label input[type=password].correct:focus + span,
+form label input[type=email].correct + span,
+form label input[type=email].correct:focus + span {
   color: #5acf50;
 }
 form label.checkbox {
@@ -269,7 +287,7 @@ form > span > button {
   color: #fff;
   border-radius: 100vw;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease, box-shadow 150ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, opacity 150ms ease, box-shadow 150ms ease, filter 150ms ease, opacity 150ms ease;
   width: 100%;
 }
 form > span > button:not(:disabled):hover, form > span > button:not(:disabled):focus {
@@ -288,6 +306,10 @@ form > span > button:disabled {
   color: #aaa;
   cursor: default;
   opacity: 0.5;
+}
+form > span > button.loading {
+  filter: grayscale(75%);
+  opacity: 0.75;
 }
 form span > p {
   color: #777;
@@ -453,11 +475,6 @@ nav ul li button svg * {
   fill: #222;
   transition: fill 150ms ease;
 }
-@media (max-width: 1024px) {
-  nav ul li button {
-    font-size: 0rem;
-  }
-}
 nav ul li button:hover, nav ul li button:focus {
   background: rgba(121, 66, 238, 0.05);
   color: #7942ee;
@@ -488,11 +505,6 @@ nav .user {
   align-items: center;
   gap: 1rem;
   cursor: pointer;
-}
-@media (max-width: 1024px) {
-  nav .user *:not(img) {
-    display: none;
-  }
 }
 nav .user:has(button.full-width) {
   display: flex;
