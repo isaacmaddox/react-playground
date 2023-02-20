@@ -87,13 +87,26 @@ export default class ForgotPass extends React.Component {
     }
 
     render() {
+        console.log(this.state.requestedUser);
         return (
             <form onSubmit={
                 this.state.code === null ? this.handleForgot : (this.state.codeMatch === false ? this.checkCode : this.resetPass)
             }>
                 <div className="title">
-                    <h2>Forgot your password?</h2>
-                    <p>We'll send a code to your email, then let you reset your password.</p>
+                    {
+                        (this.state.code === null) && 
+                        <>
+                            <h2>Forgot your password?</h2>
+                            <p>We'll send a code to your email, then let you reset your password.</p>
+                        </>
+                    }
+                    {
+                        this.state.requestedUser !== null &&
+                        <>
+                            <h2>Enter the code we sent</h2>
+                            <p>We sent a code to you at <strong>{this.state.requestedUser.email}</strong></p>
+                        </>
+                    }
                 </div>
                 {
                     this.state.code === null &&

@@ -1,207 +1,207 @@
 nav {
-	background: $white;
-	height: 100%;
-	position: relative;
-	width: 100%;
-	border-right: 2px solid $lightGray;
-	padding: $spacing * 2;
+  background: $white;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  border-right: 2px solid $lightGray;
+  padding: $spacing * 2;
 
-	@media (max-width: $grid-md) {
-		display: none;
-	}
+  @media (max-width: $grid-md) {
+    display: none;
+  }
 
-	& > img {
-		width: min(200px, 100%);
-		margin-bottom: $spacing;
-	}
+  & > img {
+    width: min(200px, 100%);
+    margin-bottom: $spacing;
+  }
 
-	ul {
-		padding: unset;
-		list-style: none;
+  ul {
+    padding: unset;
+    list-style: none;
 
-		li {
-			margin-block: $spacing;
+    li {
+      margin-block: $spacing;
 
-			button {
-				display: flex;
-				gap: $spacing;
-				align-items: center;
-				width: 100%;
-				padding: $spacing $spacing * 2;
-				text-align: left;
-				cursor: pointer;
-				border: none;
-				outline: none;
-				background: transparent;
-				border-radius: $br-round;
-				color: $black;
-				font-weight: $fw-heavy;
-				transition: background 150ms $easing-basic, color 150ms $easing-basic;
+      button {
+        display: flex;
+        gap: $spacing;
+        align-items: center;
+        width: 100%;
+        padding: $spacing $spacing * 2;
+        text-align: left;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: transparent;
+        border-radius: $br-round;
+        color: $black;
+        font-weight: $fw-heavy;
+        transition: background 150ms $easing-basic, color 150ms $easing-basic;
 
-				svg * {
-					fill: $black;
-					transition: fill 150ms $easing-basic;
-				}
+        svg * {
+          fill: $black;
+          transition: fill 150ms $easing-basic;
+        }
 
-				&:hover,
-				&:focus {
-					background: rgba($theme, 0.05);
-					box-shadow: none;
-					color: $theme;
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+          background: rgba($theme, 0.05);
+          box-shadow: none;
+          color: $theme;
 
-					svg * {
-						fill: $theme;
-					}
-				}
+          svg * {
+            fill: $theme;
+          }
+        }
 
-				&:active {
-					background: rgba($theme, 0.1);
-					box-shadow: none;
-				}
+        &:not(:disabled):active {
+          background: rgba($theme, 0.1);
+          box-shadow: none;
+        }
 
-				&.active {
-					background: rgba($theme, 0.1);
-					font-weight: $fw-bold;
-					color: $theme;
+        &.active {
+          background: rgba($theme, 0.1);
+          font-weight: $fw-bold;
+          color: $theme;
 
-					svg * {
-						fill: $theme;
-					}
-				}
-			}
-		}
-	}
+          svg * {
+            fill: $theme;
+          }
+        }
+      }
+    }
+  }
 
-	.user {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		border-top: 2px solid $lightGray;
-		padding: $spacing;
-		display: grid;
-		grid-template-columns: max-content 1fr min-content;
-		align-items: center;
-		gap: $spacing;
-		transition: background 150ms $easing-basic;
+  .user {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 2px solid $lightGray;
+    padding: $spacing;
+    display: grid;
+    grid-template-columns: max-content 1fr min-content;
+    align-items: center;
+    gap: $spacing;
+    transition: background 150ms $easing-basic;
 
-		&:has(button.full-width) {
-			display: flex;
-			flex-direction: column;
-			gap: $spacing;
-			align-items: center;
-			cursor: default;
-		}
+    &:has(button.full-width) {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing;
+      align-items: center;
+      cursor: default;
+    }
 
-		&:not(:has(button:hover), :has(button.full-width)):hover {
-			background: rgba($black, 0.05);
-			cursor: pointer;
-		}
+    &:not(:has(button:hover), :has(button.full-width)):hover {
+      background: rgba($black, 0.05);
+      cursor: pointer;
+    }
 
-		img {
-			height: auto;
-			width: 50px;
-		}
+    img {
+      height: auto;
+      width: 50px;
+    }
 
-		span {
-			p {
-				max-width: 100%;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
+    span {
+      p {
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
-			p:first-child {
-				font-size: $fs-lg;
-				font-weight: $fw-bold;
-			}
+      p:first-child {
+        font-size: $fs-lg;
+        font-weight: $fw-bold;
+      }
 
-			p:last-child {
-				font-size: $fs-sm;
-				font-weight: $fw-base;
-			}
-		}
+      p:last-child {
+        font-size: $fs-sm;
+        font-weight: $fw-base;
+      }
+    }
 
-		button {
-			width: 50px;
-			height: 50px;
-			display: grid;
-			place-items: center;
-			background: transparent;
-			border: none;
-			cursor: pointer;
-			outline: none;
-			border-radius: $br-round;
-			transition: background 150ms $easing-basic;
+    button {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      border-radius: $br-round;
+      transition: background 150ms $easing-basic;
 
-			&.full-width {
-				width: 100%;
-				background: $theme;
-				color: $white;
-				font-weight: $fw-bold;
-				font-size: $fs-base;
+      &.full-width {
+        width: 100%;
+        background: $theme;
+        color: $white;
+        font-weight: $fw-bold;
+        font-size: $fs-base;
 
-				&:hover,
-				&:focus {
-					background: $theme-400;
-					box-shadow: $bs-lg;
-				}
+        &:hover,
+        &:focus {
+          background: $theme-400;
+          box-shadow: $bs-lg;
+        }
 
-				&:active {
-					background: $theme-300;
-					box-shadow: $bs-md;
-				}
-			}
+        &:active {
+          background: $theme-300;
+          box-shadow: $bs-md;
+        }
+      }
 
-			svg {
-				transform: scale(1.25);
+      svg {
+        transform: scale(1.25);
 
-				* {
-					transition: fill 150ms $easing-basic;
-				}
-			}
+        * {
+          transition: fill 150ms $easing-basic;
+        }
+      }
 
-			&:hover,
-			&:focus {
-				background: rgba($theme, 0.05);
-				box-shadow: none;
+      &:hover,
+      &:focus {
+        background: rgba($theme, 0.05);
+        box-shadow: none;
 
-				svg * {
-					fill: $theme;
-				}
-			}
+        svg * {
+          fill: $theme;
+        }
+      }
 
-			&:active {
-				background: rgba($theme, 0.1);
-				box-shadow: none;
-			}
-		}
+      &:active {
+        background: rgba($theme, 0.1);
+        box-shadow: none;
+      }
+    }
 
-		& > p {
-			width: 100%;
-			text-align: center;
-			font-size: $fs-sm;
+    & > p {
+      width: 100%;
+      text-align: center;
+      font-size: $fs-sm;
 
-			button.link {
-				display: inline;
-				width: auto;
-				color: $theme;
-				font-size: $fs-sm;
-				font-weight: $fw-heavy;
-				background: transparent;
-				height: fit-content;
-				padding: 0px;
+      button.link {
+        display: inline;
+        width: auto;
+        color: $theme;
+        font-size: $fs-sm;
+        font-weight: $fw-heavy;
+        background: transparent;
+        height: fit-content;
+        padding: 0px;
 
-				&:hover,
-				&:focus {
-					text-decoration: underline;
-					color: $theme-400;
-				}
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+          color: $theme-400;
+        }
 
-				&:active {
-					color: $theme-300;
-				}
-			}
-		}
-	}
+        &:active {
+          color: $theme-300;
+        }
+      }
+    }
+  }
 }

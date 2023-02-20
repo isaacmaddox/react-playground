@@ -108,13 +108,18 @@ button {
   border-radius: 100vw;
   transition: background 150ms ease, box-shadow 150ms ease;
 }
-button:hover, button:focus {
+button:not(:disabled):hover, button:not(:disabled):focus {
   background: #8a59f0;
   box-shadow: 0px 4px 15px rgba(34, 34, 34, 0.1);
 }
-button:active {
+button:not(:disabled):active {
   background: #9a71f2;
   box-shadow: 0px 2px 10px rgba(34, 34, 34, 0.05);
+}
+
+strong {
+  font-weight: 600;
+  color: #7942ee;
 }
 
 @media (max-width: 1024px) {
@@ -350,11 +355,13 @@ form span > p .link {
   font-size: 0.875rem;
   padding: 0px;
 }
-form span > p .link:hover, form span > p .link:focus {
+form span > p .link:not(:disabled):hover, form span > p .link:not(:disabled):focus {
+  background: transparent;
   text-decoration: underline;
   color: #8a59f0;
 }
-form span > p .link:active {
+form span > p .link:not(:disabled):active {
+  background: transparent;
   color: #9a71f2;
 }
 form input[type=file] {
@@ -383,12 +390,13 @@ form label#fileSelect div {
   padding-left: 1rem;
   cursor: pointer;
   border-radius: 0.5rem;
-  border: 2px solid #eee;
-  transition: background 150ms ease, border-color 150ms ease;
+  outline: 2px solid #eee;
+  transition: background 150ms ease, outline-color 150ms ease;
   position: relative;
+  height: 4rem;
 }
 form label#fileSelect div button {
-  height: 4rem;
+  height: 100%;
   aspect-ratio: 1/1;
   border: none;
   background: transparent;
@@ -398,11 +406,17 @@ form label#fileSelect div button {
   border-radius: 0.25rem;
   transition: background 150ms ease, color 150ms ease;
 }
-form label#fileSelect div button:hover, form label#fileSelect div button:focus {
-  background: rgba(121, 66, 238, 0.1);
+form label#fileSelect div button.hide {
+  opacity: 0;
+  pointer-events: none;
 }
-form label#fileSelect div button:active {
+form label#fileSelect div button:not(:disabled):hover, form label#fileSelect div button:not(:disabled):focus {
+  background: rgba(121, 66, 238, 0.1);
+  box-shadow: none;
+}
+form label#fileSelect div button:not(:disabled):active {
   background: rgba(121, 66, 238, 0.15);
+  box-shadow: none;
 }
 form label#fileSelect div p {
   font-weight: 500;
@@ -414,7 +428,7 @@ form label#fileSelect div p {
 }
 form label#fileSelect div:hover {
   background: rgba(121, 66, 238, 0.05);
-  border-color: rgba(121, 66, 238, 0.25);
+  outline-color: rgba(121, 66, 238, 0.25);
 }
 form label#fileSelect div:hover p,
 form label#fileSelect div:hover button {
@@ -422,7 +436,7 @@ form label#fileSelect div:hover button {
 }
 form label#fileSelect div:active {
   background: rgba(121, 66, 238, 0.1);
-  border-color: #7942ee;
+  outline-color: #7942ee;
 }
 form label#fileSelect img {
   width: 40px;
@@ -499,15 +513,15 @@ nav ul li button svg * {
   fill: #222;
   transition: fill 150ms ease;
 }
-nav ul li button:hover, nav ul li button:focus {
+nav ul li button:not(:disabled):hover, nav ul li button:not(:disabled):focus {
   background: rgba(121, 66, 238, 0.05);
   box-shadow: none;
   color: #7942ee;
 }
-nav ul li button:hover svg *, nav ul li button:focus svg * {
+nav ul li button:not(:disabled):hover svg *, nav ul li button:not(:disabled):focus svg * {
   fill: #7942ee;
 }
-nav ul li button:active {
+nav ul li button:not(:disabled):active {
   background: rgba(121, 66, 238, 0.1);
   box-shadow: none;
 }

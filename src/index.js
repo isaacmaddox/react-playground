@@ -133,22 +133,45 @@ class App extends React.Component {
     }
 
     render() {
-        if (this.state.currentView === 'home' && this.state.client !== null) {
-            document.title = "Footphone - Shittiest Social Media Platform on the Internet";
-            return (
-                <>
-                    <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
-                    <div className="main-content">
-                        <img src={this.state.client.pfp} alt="Profile" height="50" width="50" />
-                        <h1>Welcome, {this.state.client.firstName}</h1>
-                        <button onClick={this.handleLogout}>Log Out</button>
-                        {
-                            !this.state.client.adminPriv &&
-                            <button onClick={this.handleDeleteAccount}>Delete Account</button>
-                        }
-                    </div>
-                </>
-            )
+        if (this.state.client !== null) {
+            switch (this.state.currentView) {
+            case 'home':
+                document.title = "Footphone - Shittiest Social Media Platform on the Internet";
+                return (
+                    <>
+                        <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
+                        <div className="main-content">
+                            <img src={this.state.client.pfp} alt="Profile" height="50" width="50" />
+                            <h1>Welcome, {this.state.client.firstName}</h1>
+                            <button onClick={this.handleLogout}>Log Out</button>
+                            {
+                                !this.state.client.adminPriv &&
+                                <button onClick={this.handleDeleteAccount}>Delete Account</button>
+                            }
+                        </div>
+                    </>
+                )
+            case 'admin':
+                return (
+                    <>
+                        <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
+                        <div className="main-content has-content">
+                            <h1>Admin Panel</h1>
+                            <button onClick={(e) => { this.handleDeleteAccount(e, true) }}>Delete All</button>
+                        </div>
+                    </>
+                )
+            default:
+                return (
+                    <>
+                        <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
+                        <div className="main-content">
+                            <h1>Unhandled Case:</h1>
+                            <h3>View: {this.state.currentView}, User: {this.state.client.username}</h3>
+                        </div>
+                    </>
+                )
+            }
         } else {
             switch (this.state.currentView) {
                 case 'home':
@@ -184,16 +207,6 @@ class App extends React.Component {
                         <>
                             <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
                             <ForgotPass users={this.state.users} context={this} />
-                        </>
-                    )
-                case "admin":
-                    return (
-                        <>
-                            <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
-                            <div className="main-content has-content">
-                                <h1>Admin Panel</h1>
-                                <button onClick={(e) => { this.handleDeleteAccount(e, true) }}>Delete All</button>
-                            </div>
                         </>
                     )
                 default:

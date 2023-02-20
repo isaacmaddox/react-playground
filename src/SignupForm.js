@@ -75,11 +75,11 @@ export default class SignupForm extends React.Component {
         return (
             <form onSubmit={this.createAccount}>
                 <h2>Create Account <span>* = required</span></h2>
-                <label>
+                <label className="inline">
                     <input type="text" value={this.state.firstNameValue} onChange={(e) => { this.setState({ firstNameValue: e.target.value }) }} required />
                     <span>First Name*</span>
                 </label>
-                <label>
+                <label className="inline">
                     <input type="text" value={this.state.lastNameValue} onChange={(e) => { this.setState({ lastNameValue: e.target.value }) }} />
                     <span>Last Name</span>
                 </label>
@@ -125,7 +125,7 @@ export default class SignupForm extends React.Component {
                     <div>
                         <img src={this.state.newPfp === '' ? './images/user-undefined.png' : this.state.newPfp} alt="PFP" />
                         <p>{this.state.newPfpName !== '' ? this.state.newPfpName : 'Default'}</p>
-                        <button type="button" onClick={() => { this.setState({ newPfp: '', newPfpName: 'Default' }) }}>Clear</button>
+                        <button type="button" onClick={(e) => {e.stopPropagation(); this.setState({ newPfp: '', newPfpName: 'Default' }) }} className={(this.state.newPfpName && this.state.newPfpName !== 'Default') ? '' : 'hide'}>Clear</button>
                     </div>
                 </label>
                 <input id="pfpFile" type="file" accept="image/png, image/jpeg" onChange={this.updatePFP} />
