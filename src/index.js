@@ -88,7 +88,11 @@ class App extends React.Component {
         } else {
             let newUser = new User('Admin', 'Root', 'root@footphone.com', 1, 'ROOT', btoa('ROOT'), 'admin', './images/user-admin.png', true);
             if (this.state.users.length === 0)
-                this.state.users.push(newUser);
+                this.setState({
+                    users: [
+                        newUser,
+                    ]
+                });
             localStorage.setItem('footphone-users', JSON.stringify(this.state.users));
         }
         let token = parseInt(document.cookie.split(';')[0].split('=')[1]);
