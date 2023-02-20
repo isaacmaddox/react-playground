@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import LoginForm from './LoginForm';
 import './css/styles.css';
 import SignupForm from './SignupForm';
+import ForgotPass from './ForgotPass';
 
 const root = ReactDOM.createRoot(document.querySelector('#root'));
 
@@ -99,6 +100,10 @@ class App extends React.Component {
                     currentView: 'home'
                 })
             }
+        } else {
+            this.setState({
+                currentView: 'signIn',
+            })
         }
     }
 
@@ -133,7 +138,10 @@ class App extends React.Component {
                         <img src={this.state.client.pfp} alt="Profile" height="50" width="50" />
                         <h1>Welcome, {this.state.client.firstName}</h1>
                         <button onClick={this.handleLogout}>Log Out</button>
-                        <button onClick={this.handleDeleteAccount}>Delete Account</button>
+                        {
+                            !this.state.client.adminPriv &&
+                            <button onClick={this.handleDeleteAccount}>Delete Account</button>
+                        }
                     </div>
                 </>
             )
@@ -155,7 +163,7 @@ class App extends React.Component {
                     return (
                         <>
                             <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
-                            <LoginForm users={this.state.users} login={this.handleLogin} context={this} />
+                            <LoginForm users={this.state.users} context={this} />
                         </>
                     )
                 case 'createAccount':
@@ -163,7 +171,15 @@ class App extends React.Component {
                     return (
                         <>
                             <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
-                            <SignupForm users={this.state.users} create={this.handleCreateAccount} context={this} />
+                            <SignupForm users={this.state.users} context={this} />
+                        </>
+                    )
+                case 'reset':
+                    document.title = "Forgot Password";
+                    return (
+                        <>
+                            <Navbar client={this.state.client} currentPage={this.state.currentView} handlePageChange={this.handlePageChange} />
+                            <ForgotPass users={this.state.users} context={this} />
                         </>
                     )
                 case "admin":

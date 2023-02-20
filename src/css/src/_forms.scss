@@ -38,6 +38,11 @@ form {
 		}
 	}
 
+	div.title p {
+		margin-top: $spacing / 2;
+		color: rgba($black, 0.75);
+	}
+
 	label {
 		position: relative;
 		width: 100%;

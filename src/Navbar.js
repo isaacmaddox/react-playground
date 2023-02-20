@@ -29,8 +29,13 @@ export default class Navbar extends React.Component {
                 <ul>
                     <NavButton page='home' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
                     <NavButton page='trending' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
-                    <NavButton page='notifications' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
-                    <NavButton page='messages' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
+                    {
+                        this.props.client !== null &&
+                        <>
+                            <NavButton page='notifications' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
+                            <NavButton page='messages' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
+                        </>
+                    }
                     {
                         this.props.client !== null && this.props.client.adminPriv &&
                         <NavButton text='Admin Panel' page='admin' currentPage={this.props.currentPage} handlePageChange={this.props.handlePageChange} />
@@ -45,7 +50,7 @@ export default class Navbar extends React.Component {
                                 <p>{this.props.client.username}</p>
                                 <p>@{this.props.client.handle}</p>
                             </span>
-                            <button onClick={this.props.openSettings}>{svg['settings']}</button>
+                            <button onClick={(e) => { e.stopPropagation(); this.props.handlePageChange('settings') }}>{svg['settings']}</button>
                         </>
                     }
                     {
@@ -56,7 +61,7 @@ export default class Navbar extends React.Component {
                         </>
                     }
                 </div>
-            </nav>
+            </nav >
         )
     }
 }

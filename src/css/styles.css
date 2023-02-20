@@ -97,6 +97,26 @@ h3 {
   height: 100vh;
 }
 
+button {
+  background: #7942ee;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 100vw;
+  transition: background 150ms ease, box-shadow 150ms ease;
+}
+button:hover, button:focus {
+  background: #8a59f0;
+  box-shadow: 0px 4px 15px rgba(34, 34, 34, 0.1);
+}
+button:active {
+  background: #9a71f2;
+  box-shadow: 0px 2px 10px rgba(34, 34, 34, 0.05);
+}
+
 @media (max-width: 1024px) {
   .main-content .sidebar {
     display: none;
@@ -139,6 +159,10 @@ form > h2 span {
   display: block;
   color: #f64343;
   font-weight: 500;
+}
+form div.title p {
+  margin-top: 0.5rem;
+  color: rgba(34, 34, 34, 0.75);
 }
 form label {
   position: relative;
@@ -477,6 +501,7 @@ nav ul li button svg * {
 }
 nav ul li button:hover, nav ul li button:focus {
   background: rgba(121, 66, 238, 0.05);
+  box-shadow: none;
   color: #7942ee;
 }
 nav ul li button:hover svg *, nav ul li button:focus svg * {
@@ -484,6 +509,7 @@ nav ul li button:hover svg *, nav ul li button:focus svg * {
 }
 nav ul li button:active {
   background: rgba(121, 66, 238, 0.1);
+  box-shadow: none;
 }
 nav ul li button.active {
   background: rgba(121, 66, 238, 0.1);
@@ -504,7 +530,7 @@ nav .user {
   grid-template-columns: max-content 1fr min-content;
   align-items: center;
   gap: 1rem;
-  cursor: pointer;
+  transition: background 150ms ease;
 }
 nav .user:has(button.full-width) {
   display: flex;
@@ -512,6 +538,10 @@ nav .user:has(button.full-width) {
   gap: 1rem;
   align-items: center;
   cursor: default;
+}
+nav .user:not(:has(button:hover), :has(button.full-width)):hover {
+  background: rgba(34, 34, 34, 0.05);
+  cursor: pointer;
 }
 nav .user img {
   height: auto;
@@ -564,11 +594,16 @@ nav .user button svg {
 nav .user button svg * {
   transition: fill 150ms ease;
 }
-nav .user button:hover {
+nav .user button:hover, nav .user button:focus {
   background: rgba(121, 66, 238, 0.05);
+  box-shadow: none;
 }
-nav .user button:hover svg * {
+nav .user button:hover svg *, nav .user button:focus svg * {
   fill: #7942ee;
+}
+nav .user button:active {
+  background: rgba(121, 66, 238, 0.1);
+  box-shadow: none;
 }
 nav .user > p {
   width: 100%;
@@ -583,6 +618,7 @@ nav .user > p button.link {
   font-weight: 500;
   background: transparent;
   height: fit-content;
+  padding: 0px;
 }
 nav .user > p button.link:hover, nav .user > p button.link:focus {
   text-decoration: underline;

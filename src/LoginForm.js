@@ -68,7 +68,7 @@ export default class LoginForm extends React.Component {
                 <h2>Log In</h2>
                 <label>
                     <input type="text" className={this.state.failedLogin ? 'incorrect' : ''} value={this.state.unameValue} onChange={(e) => { this.setState({ unameValue: e.target.value, userMatch: undefined, failedLogin: false, }) }} />
-                    <span>Username</span>
+                    <span>Username or email</span>
                 </label>
                 {
                     this.state.failedLogin && !this.state.userMatch &&
@@ -86,7 +86,7 @@ export default class LoginForm extends React.Component {
                 }
                 <span>
                     <label className='checkbox'>
-                        <input type="checkbox" onChange={this.toggleRemember} id="remember" />
+                        <input type="checkbox" onChange={() => { this.setState({ rememberUser: !this.state.rememberUser }) }} id="remember" />
                         <div className="checkmark"></div>
                     </label>
                     <label htmlFor="remember">

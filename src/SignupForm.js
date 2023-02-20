@@ -62,7 +62,7 @@ export default class SignupForm extends React.Component {
         })
         e.preventDefault();
         let newUsers = this.props.users;
-        let newUser = new User(this.state.firstNameValue, this.state.lastNameValue, this.state.emailValue, newUsers.length, this.state.unameValue, btoa(this.state.passValue, 'utf-8'), this.state.handleValue !== '' ? this.state.handleValue : this.state.unameValue, this.state.newPfp);
+        let newUser = new User(this.state.firstNameValue, this.state.lastNameValue, this.state.emailValue, newUsers.length, this.state.unameValue, btoa(this.state.passValue), this.state.handleValue !== '' ? this.state.handleValue : this.state.unameValue, this.state.newPfp);
         newUsers.push(newUser);
         localStorage.setItem('footphone-users', JSON.stringify(newUsers));
         this.props.context.setState({

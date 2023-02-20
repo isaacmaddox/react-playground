@@ -75,6 +75,29 @@ h3 {
 	}
 }
 
+button {
+	background: $theme;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: $white;
+	font-weight: $fw-heavy;
+	padding: $spacing / 2 $spacing;
+	border-radius: $br-round;
+	transition: background 150ms $easing-basic, box-shadow 150ms $easing-basic;
+
+	&:hover,
+	&:focus {
+		background: $theme-400;
+		box-shadow: $bs-md;
+	}
+
+	&:active {
+		background: $theme-300;
+		box-shadow: $bs-sm;
+	}
+}
+
 @media (max-width: $grid-lg) {
 	.main-content .sidebar {
 		display: none;
