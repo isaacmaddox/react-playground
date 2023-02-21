@@ -24,6 +24,16 @@
   }
 }
 
+*:not(button:not(.link))::selection {
+  background: rgba(121, 66, 238, 0.35);
+  color: #7942ee;
+}
+
+button:not(.link)::selection {
+  background: #fff;
+  color: #7942ee;
+}
+
 *,
 *::before,
 *::after {
@@ -421,7 +431,6 @@ form label#fileSelect div button:not(:disabled):active {
 form label#fileSelect div p {
   font-weight: 500;
   color: #222;
-  border-radius: 0.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -436,7 +445,7 @@ form label#fileSelect div:hover button {
 }
 form label#fileSelect div:active {
   background: rgba(121, 66, 238, 0.1);
-  outline-color: #7942ee;
+  outline-color: rgba(121, 66, 238, 0.75);
 }
 form label#fileSelect img {
   width: 40px;
@@ -445,7 +454,7 @@ form label#fileSelect img {
   border-radius: 50%;
 }
 form label#fileSelect.selected div {
-  border-color: rgba(121, 66, 238, 0.5);
+  outline-color: rgba(121, 66, 238, 0.5);
   background: rgba(121, 66, 238, 0.1);
 }
 form label#fileSelect.selected div p,
@@ -513,17 +522,25 @@ nav ul li button svg * {
   fill: #222;
   transition: fill 150ms ease;
 }
-nav ul li button:not(:disabled):hover, nav ul li button:not(:disabled):focus {
+nav ul li button:not(:disabled):hover {
   background: rgba(121, 66, 238, 0.05);
   box-shadow: none;
   color: #7942ee;
 }
-nav ul li button:not(:disabled):hover svg *, nav ul li button:not(:disabled):focus svg * {
+nav ul li button:not(:disabled):hover svg * {
   fill: #7942ee;
+}
+nav ul li button:not(:disabled):focus {
+  background: transparent;
+  box-shadow: none;
 }
 nav ul li button:not(:disabled):active {
   background: rgba(121, 66, 238, 0.1);
   box-shadow: none;
+  color: #7942ee;
+}
+nav ul li button:not(:disabled):active svg * {
+  fill: #7942ee;
 }
 nav ul li button.active {
   background: rgba(121, 66, 238, 0.1);

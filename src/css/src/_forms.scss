@@ -1,390 +1,383 @@
 form {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  grid-column: 2;
-  grid-column-end: 4;
-  background: $white;
-  border: 1px solid $lightGray;
-  padding: calc($spacing * 4) calc($spacing * 4);
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: min(600px, calc(100% - $spacing * 2));
-  border-radius: $br-md;
-  box-shadow: $bs-lg;
-  max-height: calc(100% - $spacing * 4);
-  overflow: auto;
+	// position: absolute;
+	// top: 50%;
+	// left: 50%;
+	grid-column: 2;
+	grid-column-end: 4;
+	background: $white;
+	border: 1px solid $lightGray;
+	padding: calc($spacing * 4) calc($spacing * 4);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: min(600px, calc(100% - $spacing * 2));
+	border-radius: $br-md;
+	box-shadow: $bs-lg;
+	max-height: calc(100% - $spacing * 4);
+	overflow: auto;
 
-  > *:not(div),
-  > *:not(span) {
-    margin-block: calc($spacing / 2);
-  }
+	> *:not(div),
+	> *:not(span) {
+		margin-block: calc($spacing / 2);
+	}
 
-  > div {
-    margin-bottom: calc($spacing / 2);
-  }
+	> div {
+		margin-bottom: calc($spacing / 2);
+	}
 
-  > h2 {
-    margin-bottom: $spacing;
-    width: 100%;
+	> h2 {
+		margin-bottom: $spacing;
+		width: 100%;
 
-    span {
-      font-size: $fs-sm;
-      display: block;
-      color: $red;
-      font-weight: $fw-heavy;
-    }
-  }
+		span {
+			font-size: $fs-sm;
+			display: block;
+			color: $red;
+			font-weight: $fw-heavy;
+		}
+	}
 
-  div.title p {
-    margin-top: $spacing / 2;
-    color: rgba($black, 0.75);
-  }
+	div.title p {
+		margin-top: $spacing / 2;
+		color: rgba($black, 0.75);
+	}
 
-  label {
-    position: relative;
-    width: 100%;
+	label {
+		position: relative;
+		width: 100%;
 
-    &.inline {
-      width: calc(50% - $spacing / 2);
-    }
+		&.inline {
+			width: calc(50% - $spacing / 2);
+		}
 
-    span:not(.static) {
-      position: absolute;
-      top: 0%;
-      padding-inline: calc($spacing / 2);
-      left: calc($spacing * 1.5);
-      transform: translateY(-50%);
-      color: $darkGray;
-      background: $white;
-      transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic,
-        font-size 0.5s $easing;
-      font-weight: $fw-heavy;
-      font-size: $fs-2xs;
-    }
+		span:not(.static) {
+			position: absolute;
+			top: 0%;
+			padding-inline: calc($spacing / 2);
+			left: calc($spacing * 1.5);
+			transform: translateY(-50%);
+			color: $darkGray;
+			background: $white;
+			transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+			font-weight: $fw-heavy;
+			font-size: $fs-2xs;
+		}
 
-    span.static {
-      display: block;
-      width: 100%;
-      color: $darkGray;
-      transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
-      font-weight: $fw-heavy;
-    }
+		span.static {
+			display: block;
+			width: 100%;
+			color: $darkGray;
+			transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic;
+			font-weight: $fw-heavy;
+		}
 
-    input[type="text"],
-    input[type="password"],
-    input[type="email"] {
-      border: 2px solid $lightGray;
-      background-color: $white;
-      padding: $spacing calc($spacing * 2);
-      width: 100%;
-      border-radius: $br-sm;
-      outline: none;
-      transition: border-color 150ms $easing-basic;
-      font-weight: $fw-heavy;
-      color: $black;
+		input[type="text"],
+		input[type="password"],
+		input[type="email"] {
+			border: 2px solid $lightGray;
+			background-color: $white;
+			padding: $spacing calc($spacing * 2);
+			width: 100%;
+			border-radius: $br-sm;
+			outline: none;
+			transition: border-color 150ms $easing-basic;
+			font-weight: $fw-heavy;
+			color: $black;
 
-      &:-webkit-autofill {
-        -webkit-box-shadow: 0px 0px 0px 30px $white inset !important;
-        border-color: rgba($theme, 0.15);
-      }
+			&:-webkit-autofill {
+				-webkit-box-shadow: 0px 0px 0px 30px $white inset !important;
+				border-color: rgba($theme, 0.15);
+			}
 
-      &:focus {
-        border-color: $theme;
+			&:focus {
+				border-color: $theme;
 
-        & + span {
-          top: 0;
-          transition: top 0.5s $easing, left 0.3s $easing,
-            color 150ms $easing-basic, font-size 0.5s $easing;
-          color: $theme;
-          cursor: default;
-          font-size: $fs-2xs;
-        }
-      }
+				& + span {
+					top: 0;
+					transition: top 0.5s $easing, left 0.3s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+					color: $theme;
+					cursor: default;
+					font-size: $fs-2xs;
+				}
+			}
 
-      &[value=""]:not(:focus) + span {
-        top: 50%;
-        transition: top 0.3s $easing, left 0.5s $easing,
-          color 150ms $easing-basic, font-size 0.5s $easing;
-        cursor: text;
-        font-size: $fs-base;
-      }
+			&[value=""]:not(:focus) + span {
+				top: 50%;
+				transition: top 0.3s $easing, left 0.5s $easing, color 150ms $easing-basic, font-size 0.5s $easing;
+				cursor: text;
+				font-size: $fs-base;
+			}
 
-      &.incorrect {
-        border-color: $red;
+			&.incorrect {
+				border-color: $red;
 
-        & + span,
-        &:focus + span {
-          color: $red;
-        }
-      }
+				& + span,
+				&:focus + span {
+					color: $red;
+				}
+			}
 
-      &.correct {
-        border-color: $green;
+			&.correct {
+				border-color: $green;
 
-        & + span,
-        &:focus + span {
-          color: $green;
-        }
-      }
-    }
+				& + span,
+				&:focus + span {
+					color: $green;
+				}
+			}
+		}
 
-    &.checkbox {
-      display: inline-block;
-      height: 20px;
-      width: 20px;
-      border: 2px solid $lightGray;
-      position: relative;
-      border-radius: $br-round;
-      overflow: hidden;
-      vertical-align: middle;
-      transition: border-color 150ms $easing-basic;
-      margin-right: calc($spacing / 2);
-      cursor: pointer;
+		&.checkbox {
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			border: 2px solid $lightGray;
+			position: relative;
+			border-radius: $br-round;
+			overflow: hidden;
+			vertical-align: middle;
+			transition: border-color 150ms $easing-basic;
+			margin-right: calc($spacing / 2);
+			cursor: pointer;
 
-      & + label {
-        cursor: pointer;
-      }
+			& + label {
+				cursor: pointer;
+			}
 
-      &:hover {
-        border-color: rgba($theme, 0.5);
-      }
+			&:hover {
+				border-color: rgba($theme, 0.5);
+			}
 
-      &:has(+ label:hover) {
-        border-color: rgba($theme, 0.5);
-      }
+			&:has(+ label:hover) {
+				border-color: rgba($theme, 0.5);
+			}
 
-      &:has(input[type="checkbox"]:checked) {
-        border-color: $theme;
-      }
+			&:has(input[type="checkbox"]:checked) {
+				border-color: $theme;
+			}
 
-      .checkmark {
-        position: absolute;
-        inset: 0;
-        background: $white;
-        transform: scale(0);
-        border-radius: $br-round;
-        transition: transform 0.5s $easing, background 150ms $easing-basic;
-      }
+			.checkmark {
+				position: absolute;
+				inset: 0;
+				background: $white;
+				transform: scale(0);
+				border-radius: $br-round;
+				transition: transform 0.5s $easing, background 150ms $easing-basic;
+			}
 
-      input[type="checkbox"] {
-        display: none;
-      }
+			input[type="checkbox"] {
+				display: none;
+			}
 
-      input[type="checkbox"]:checked + .checkmark {
-        background: $theme;
-        transform: scale(0.65);
-      }
-    }
-  }
+			input[type="checkbox"]:checked + .checkmark {
+				background: $theme;
+				transform: scale(0.65);
+			}
+		}
+	}
 
-  > div {
-    font-weight: $fw-bold;
-    color: $red;
-  }
+	> div {
+		font-weight: $fw-bold;
+		color: $red;
+	}
 
-  > span {
-    display: block;
-    width: 100%;
+	> span {
+		display: block;
+		width: 100%;
 
-    > button {
-      border: 2px solid $theme;
-      background: $theme;
-      padding: $spacing calc($spacing * 2);
-      font-weight: $fw-bold;
-      color: $white;
-      border-radius: $br-round;
-      cursor: pointer;
-      transition: background 150ms $easing-basic,
-        border-color 150ms $easing-basic, color 150ms $easing-basic,
-        opacity 150ms $easing-basic, box-shadow 150ms $easing-basic,
-        filter 150ms $easing-basic, opacity 150ms $easing-basic;
-      width: 100%;
+		> button {
+			border: 2px solid $theme;
+			background: $theme;
+			padding: $spacing calc($spacing * 2);
+			font-weight: $fw-bold;
+			color: $white;
+			border-radius: $br-round;
+			cursor: pointer;
+			transition: background 150ms $easing-basic, border-color 150ms $easing-basic, color 150ms $easing-basic, opacity 150ms $easing-basic, box-shadow 150ms $easing-basic,
+				filter 150ms $easing-basic, opacity 150ms $easing-basic;
+			width: 100%;
 
-      &:not(:disabled):hover,
-      &:not(:disabled):focus {
-        background: $theme-400;
-        border-color: $theme-400;
-        box-shadow: $bs-lg;
-      }
+			&:not(:disabled):hover,
+			&:not(:disabled):focus {
+				background: $theme-400;
+				border-color: $theme-400;
+				box-shadow: $bs-lg;
+			}
 
-      &:not(:disabled):active {
-        background: $theme-300;
-        border-color: $theme-300;
-        box-shadow: $bs-md;
-      }
+			&:not(:disabled):active {
+				background: $theme-300;
+				border-color: $theme-300;
+				box-shadow: $bs-md;
+			}
 
-      &:disabled {
-        background: $white;
-        border-color: $lightGray;
-        color: $darkGray;
-        cursor: default;
-        opacity: 0.5;
-      }
+			&:disabled {
+				background: $white;
+				border-color: $lightGray;
+				color: $darkGray;
+				cursor: default;
+				opacity: 0.5;
+			}
 
-      &.loading {
-        filter: grayscale(75%);
-        opacity: 0.75;
-      }
-    }
-  }
+			&.loading {
+				filter: grayscale(75%);
+				opacity: 0.75;
+			}
+		}
+	}
 
-  span > p {
-    color: $darkerGray;
-    text-align: center;
-    margin-top: $spacing;
-    font-size: $fs-xs;
+	span > p {
+		color: $darkerGray;
+		text-align: center;
+		margin-top: $spacing;
+		font-size: $fs-xs;
 
-    .link {
-      background: $white;
-      color: $theme;
-      border: none;
-      cursor: pointer;
-      font-weight: $fw-bold;
-      font-size: $fs-xs;
-      padding: 0px;
+		.link {
+			background: $white;
+			color: $theme;
+			border: none;
+			cursor: pointer;
+			font-weight: $fw-bold;
+			font-size: $fs-xs;
+			padding: 0px;
 
-      &:not(:disabled):hover,
-      &:not(:disabled):focus {
-        background: transparent;
-        text-decoration: underline;
-        color: $theme-400;
-      }
+			&:not(:disabled):hover,
+			&:not(:disabled):focus {
+				background: transparent;
+				text-decoration: underline;
+				color: $theme-400;
+			}
 
-      &:not(:disabled):active {
-        background: transparent;
-        color: $theme-300;
-      }
-    }
-  }
+			&:not(:disabled):active {
+				background: transparent;
+				color: $theme-300;
+			}
+		}
+	}
 
-  input[type="file"] {
-    display: none;
-  }
+	input[type="file"] {
+		display: none;
+	}
 
-  label#fileSelect {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing;
-    cursor: pointer;
+	label#fileSelect {
+		display: flex;
+		flex-direction: column;
+		gap: $spacing;
+		cursor: pointer;
 
-    &:hover div {
-      background: rgba($theme, 0.05);
-      border-color: rgba($theme, 0.25);
+		&:hover div {
+			background: rgba($theme, 0.05);
+			border-color: rgba($theme, 0.25);
 
-      p,
-      button {
-        color: $theme;
-      }
-    }
+			p,
+			button {
+				color: $theme;
+			}
+		}
 
-    div {
-      display: grid;
-      grid-template-columns: max-content 1fr min-content;
-      align-items: center;
-      gap: $spacing;
-      width: 100%;
-      padding-left: $spacing;
-      cursor: pointer;
-      border-radius: $br-md;
-      //   border: 2px solid $lightGray;
-      outline: 2px solid $lightGray;
-      transition: background 150ms $easing-basic,
-        outline-color 150ms $easing-basic;
-      position: relative;
-      height: $spacing * 4;
+		div {
+			display: grid;
+			grid-template-columns: max-content 1fr min-content;
+			align-items: center;
+			gap: $spacing;
+			width: 100%;
+			padding-left: $spacing;
+			cursor: pointer;
+			border-radius: $br-md;
+			//   border: 2px solid $lightGray;
+			outline: 2px solid $lightGray;
+			transition: background 150ms $easing-basic, outline-color 150ms $easing-basic;
+			position: relative;
+			height: $spacing * 4;
 
-      button {
-        height: 100%;
-        aspect-ratio: 1/1;
-        border: none;
-        background: transparent;
-        font-size: $fs-2xs;
-        font-weight: $fw-bold;
-        cursor: pointer;
-        border-radius: $br-sm;
-        transition: background 150ms $easing-basic, color 150ms $easing-basic;
+			button {
+				height: 100%;
+				aspect-ratio: 1/1;
+				border: none;
+				background: transparent;
+				font-size: $fs-2xs;
+				font-weight: $fw-bold;
+				cursor: pointer;
+				border-radius: $br-sm;
+				transition: background 150ms $easing-basic, color 150ms $easing-basic;
 
-        &.hide {
-          opacity: 0;
-          pointer-events: none;
-        }
+				&.hide {
+					opacity: 0;
+					pointer-events: none;
+				}
 
-        &:not(:disabled):hover,
-        &:not(:disabled):focus {
-          background: rgba($theme, 0.1);
-          box-shadow: none;
-        }
+				&:not(:disabled):hover,
+				&:not(:disabled):focus {
+					background: rgba($theme, 0.1);
+					box-shadow: none;
+				}
 
-        &:not(:disabled):active {
-          background: rgba($theme, 0.15);
-          box-shadow: none;
-        }
-      }
+				&:not(:disabled):active {
+					background: rgba($theme, 0.15);
+					box-shadow: none;
+				}
+			}
 
-      p {
-        font-weight: $fw-heavy;
-        color: $black;
-        border-radius: $br-md;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
+			p {
+				font-weight: $fw-heavy;
+				color: $black;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 
-      &:hover {
-        background: rgba($theme, 0.05);
-        outline-color: rgba($theme, 0.25);
+			&:hover {
+				background: rgba($theme, 0.05);
+				outline-color: rgba($theme, 0.25);
 
-        p,
-        button {
-          color: $theme;
-        }
-      }
+				p,
+				button {
+					color: $theme;
+				}
+			}
 
-      &:active {
-        background: rgba($theme, 0.1);
-        outline-color: $theme;
-      }
-    }
+			&:active {
+				background: rgba($theme, 0.1);
+				outline-color: rgba($theme, 0.75);
+			}
+		}
 
-    img {
-      width: 40px;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-      border-radius: 50%;
-    }
+		img {
+			width: 40px;
+			aspect-ratio: 1/1;
+			object-fit: cover;
+			border-radius: 50%;
+		}
 
-    &.selected {
-      div {
-        border-color: rgba($theme, 0.5);
-        background: rgba($theme, 0.1);
-      }
+		&.selected {
+			div {
+				outline-color: rgba($theme, 0.5);
+				background: rgba($theme, 0.1);
+			}
 
-      div p,
-      div button {
-        color: $theme;
-      }
+			div p,
+			div button {
+				color: $theme;
+			}
 
-      img {
-        outline-color: $theme;
-      }
-    }
-  }
+			img {
+				outline-color: $theme;
+			}
+		}
+	}
 }
 
 @media (max-width: $grid-md) {
-  body,
-  html {
-    background: $white;
-  }
+	body,
+	html {
+		background: $white;
+	}
 
-  form {
-    width: 100%;
-    max-height: 100%;
-    padding-inline: calc($spacing * 2);
-    box-shadow: none;
-    border: none;
-  }
+	form {
+		width: 100%;
+		max-height: 100%;
+		padding-inline: calc($spacing * 2);
+		box-shadow: none;
+		border: none;
+	}
 }

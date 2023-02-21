@@ -87,14 +87,13 @@ export default class ForgotPass extends React.Component {
     }
 
     render() {
-        console.log(this.state.requestedUser);
         return (
             <form onSubmit={
                 this.state.code === null ? this.handleForgot : (this.state.codeMatch === false ? this.checkCode : this.resetPass)
             }>
                 <div className="title">
                     {
-                        (this.state.code === null) && 
+                        (this.state.code === null) &&
                         <>
                             <h2>Forgot your password?</h2>
                             <p>We'll send a code to your email, then let you reset your password.</p>
@@ -142,7 +141,7 @@ export default class ForgotPass extends React.Component {
                     <div>New password cannot be the same as previous password</div>
                 }
                 <span>
-                    <button type="submit" className={this.state.resetting ? 'loading' : ''}>
+                    <button type="submit" className={this.state.resetting ? 'loading' : ''} disabled={this.state.code !== null && !this.state.codeMatch && this.state.codeValue.length !== 6}>
                         {
                             (this.state.code === null &&
                                 "Send Code") || ((this.state.userFound && !this.state.codeMatch) &&
